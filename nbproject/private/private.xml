@@ -3,21 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/kk/NetBeansProjects/adt/src/interfaces/AdtContainer.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/interfaces/AdtList.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/interfaces/AdtStack.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/interfaces/AdtQueue.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/interfaces/AdtArray.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/AdtContainerFactory.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/AdtListImpl.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/AdtStackImpl.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/AdtQueueImpl.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/AdtArrayImpl.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/tests/AdtArrayTest.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/tests/AdtStackTest.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/tests/AdtQueueTest.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/tests/AdtAllTest.java</file>
-            <file>file:/home/kk/NetBeansProjects/adt/src/implementations/tests/AdtListTest.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtArray.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtContainerFactory.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtStack.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtList.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtListTest.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtListImpl.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtQueue.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/tests/AdtListTest.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtContainer.java</file>
         </group>
     </open-files>
 </project-private>
