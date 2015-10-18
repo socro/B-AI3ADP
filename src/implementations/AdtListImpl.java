@@ -11,7 +11,7 @@ class AdtListImpl implements AdtList {
             
     }
     
-    public AdtListImpl valueOf(){
+    public static AdtList valueOf(){
         return new AdtListImpl();
     }
     

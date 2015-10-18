@@ -4,6 +4,12 @@ import interfaces.AdtArray;
 
 
 class AdtArrayImpl implements AdtArray {
+    
+    AdtArrayImpl(){}
+    
+    public static AdtArray valueOf(){
+        return new AdtArrayImpl();
+    }
 
     @Override
     public void set(int pos, int elem) {

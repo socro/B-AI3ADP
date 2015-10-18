@@ -1,10 +1,14 @@
 package implementations;
 
-import interfaces.AdtList;
+import interfaces.*;
 
 public class AdtContainerFactory {
 
     public static AdtList adtList() {
-        return new AdtListImpl();
+        return AdtListImpl.valueOf();
+    }
+    
+    public static AdtArray adtArray() {
+        return AdtArrayImpl.valueOf();
     }
 }
