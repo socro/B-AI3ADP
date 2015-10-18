@@ -2,6 +2,6 @@ package implementations;
 
 import interfaces.AdtStack;
 
-public class AdtStackImpl extends AdtStack {
+package class AdtStackImpl implements AdtStack {
     
 }

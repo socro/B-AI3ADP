@@ -1,5 +1,8 @@
 package interfaces;
 
-public class AdtQueue extends AdtContainer {
-    
+public interface AdtQueue extends AdtContainer {
+    public int front();
+    public void enQueue(int elem);
+    public void deQueue();
+    public boolean isEmpty();
 }

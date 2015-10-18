@@ -2,6 +2,6 @@ package implementations;
 
 import interfaces.AdtList;
 
-public class AdtListImpl extends AdtList {
+public class AdtListImpl implements AdtList {
     
 }

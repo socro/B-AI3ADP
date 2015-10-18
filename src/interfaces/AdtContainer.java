@@ -1,5 +1,5 @@
 package interfaces;
 
-public class AdtContainer {
+public interface AdtContainer {
     
 }

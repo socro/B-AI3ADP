@@ -1,5 +1,8 @@
 package interfaces;
 
-public class AdtStack extends AdtContainer {
-    
+public interface AdtStack extends AdtContainer {
+    public void push(int elem);
+    public void pop();
+    public int top();
+    public boolean isEmpty();
 }
