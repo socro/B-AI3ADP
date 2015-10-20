@@ -11,4 +11,12 @@ public class AdtContainerFactory {
     public static AdtArray adtArray() {
         return AdtArrayImpl.valueOf();
     }
+    
+    public static AdtQueue adtQueue() {
+        return AdtQueueImpl.valueOf();
+    }
+    
+    public static AdtStack adtStack() {
+        return AdtStackImpl.valueOf();
+    }
 }

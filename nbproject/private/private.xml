@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtArray.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtStackImpl.java</file>
             <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtContainerFactory.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtStack.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtList.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtListTest.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtListImpl.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtQueue.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/tests/AdtListTest.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/interfaces/AdtContainer.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtQueueImpl.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,27 +1,43 @@
 package implementations;
 
+import interfaces.AdtList;
 import interfaces.AdtStack;
 
 class AdtStackImpl implements AdtStack {
 
+    static AdtStack valueOf() {
+        return new AdtStackImpl();
+    }
+    
+    private final AdtList liste;
+
+    AdtStackImpl() {
+        this.liste = AdtContainerFactory.adtList();
+    }
+
     @Override
     public void push(int elem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        liste.insert(liste.length()+1, elem);
     }
 
     @Override
     public void pop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!isEmpty()) {
+            liste.delete(liste.length());
+        }
     }
 
     @Override
     public int top() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(!isEmpty()) {
+            liste.retrieve(liste.length());
+        }
+        return 0;
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return liste.length() == 0;
     }
     
 }

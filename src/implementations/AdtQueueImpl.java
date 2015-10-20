@@ -1,27 +1,55 @@
 package implementations;
 
 import interfaces.AdtQueue;
+import interfaces.AdtStack;
 
 class AdtQueueImpl implements AdtQueue {
 
+    static AdtQueue valueOf() {
+        return new AdtQueueImpl();
+    }
+    
+    private final AdtStack input;
+    private final AdtStack output;
+
+    AdtQueueImpl() {
+        this.input = AdtContainerFactory.adtStack();
+        this.output = AdtContainerFactory.adtStack();
+    }
+
     @Override
     public int front() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (output.isEmpty()){
+            stackToOutput();
+        }
+        if (output.isEmpty()){
+            return 0;
+        }
+        return output.top();
     }
 
     @Override
     public void enQueue(int elem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        input.push(elem);
     }
 
     @Override
     public void deQueue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(output.isEmpty()){
+            stackToOutput();
+        }
+        output.pop();
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return output.isEmpty() && input.isEmpty();
+    }
+
+    private void stackToOutput() {
+        while(input.top() != 0){
+                output.push(input.top());
+            }
     }
     
 }

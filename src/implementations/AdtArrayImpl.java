@@ -1,29 +1,47 @@
 package implementations;
 
 import interfaces.AdtArray;
-
+import interfaces.AdtList;
 
 class AdtArrayImpl implements AdtArray {
-    
-    AdtArrayImpl(){}
-    
-    public static AdtArray valueOf(){
+
+    private final AdtList liste;
+
+    private int highestWrittenIndex = 0;
+
+    AdtArrayImpl() {
+        this.liste = AdtContainerFactory.adtList();
+    }
+
+    public static AdtArray valueOf() {
         return new AdtArrayImpl();
     }
 
     @Override
     public void set(int pos, int elem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (highestWrittenIndex >= pos) {
+            liste.delete(pos + 1);
+            liste.insert(pos + 1, elem);
+        } else {
+            int diffToPos = pos - highestWrittenIndex;
+            while (diffToPos > highestWrittenIndex) {
+                liste.insert(diffToPos, 0);
+
+                diffToPos--;
+            }
+            highestWrittenIndex = pos;
+            set(pos, elem);
+        }
     }
 
     @Override
     public int get(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return liste.retrieve(pos + 1);
     }
 
     @Override
     public int length() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return liste.length() + 1;
     }
-    
+
 }
