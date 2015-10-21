@@ -47,7 +47,7 @@ class AdtQueueImpl implements AdtQueue {
     }
 
     private void stackToOutput() {
-        while(input.top() != 0){
+        while(!input.isEmpty()){
                 output.push(input.top());
             }
     }

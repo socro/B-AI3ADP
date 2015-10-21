@@ -47,12 +47,12 @@ public class AdtListTest {
     public void tollerinserttesterfueradtlisten() {
         AdtList meinetestliste = AdtContainerFactory.adtList();
         
-        AdtList diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche = AdtContainerFactory.adtList();
+        AdtList meinezweitetestliste = AdtContainerFactory.adtList();
         
-        diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche.insert(1, 2);
-        diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche.insert(1, 3);
-        diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche.insert(1, 4);
-        diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche.insert(1, 5);
+        meinezweitetestliste.insert(1, 2);
+        meinezweitetestliste.insert(1, 3);
+        meinezweitetestliste.insert(1, 4);
+        meinezweitetestliste.insert(1, 5);
 
         assertEquals(true, meinetestliste.isEmpty());
         assertEquals(0, meinetestliste.length());
@@ -72,7 +72,7 @@ public class AdtListTest {
         assertEquals(0,meinetestliste.find(4));
         assertEquals(3,meinetestliste.find(2));
         
-        meinetestliste.concat(diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche);
+        meinetestliste.concat(meinezweitetestliste);
         assertEquals(7, meinetestliste.length());
     }
 

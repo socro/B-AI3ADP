@@ -4,7 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtStackImpl.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtContainerFactory.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtArrayTest.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtListTest.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtQueueTest.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtListImpl.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtArrayImpl.java</file>
+            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtStackTest.java</file>
             <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtQueueImpl.java</file>
         </group>
     </open-files>

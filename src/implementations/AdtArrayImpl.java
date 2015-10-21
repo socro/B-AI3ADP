@@ -24,8 +24,8 @@ class AdtArrayImpl implements AdtArray {
             liste.insert(pos + 1, elem);
         } else {
             int diffToPos = pos - highestWrittenIndex;
-            while (diffToPos > highestWrittenIndex) {
-                liste.insert(diffToPos, 0);
+            while (diffToPos >= 0) {
+                liste.insert(diffToPos+highestWrittenIndex, 0);
 
                 diffToPos--;
             }
