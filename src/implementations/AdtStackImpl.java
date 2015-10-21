@@ -30,7 +30,7 @@ class AdtStackImpl implements AdtStack {
     @Override
     public int top() {
         if(!isEmpty()) {
-            liste.retrieve(liste.length());
+            return liste.retrieve(liste.length());
         }
         return 0;
     }
@@ -41,29 +41,25 @@ class AdtStackImpl implements AdtStack {
     }
     
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o){        
         if((o == this)) {
             return true;
         }
         if(this.getClass() == o.getClass()){
             AdtStack that = (AdtStack) o;
+                                    
             while(!this.isEmpty() && !that.isEmpty()){
                 if(!(this.top() == that.top())) {
                     return false;
-                }
+                }               
                 this.pop();
                 that.pop();
-            }
+            }            
+            
             if(this.isEmpty() && that.isEmpty()){
                 return true;
             }
         }        
         return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
     }
 }

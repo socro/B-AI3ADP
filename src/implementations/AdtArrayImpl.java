@@ -20,14 +20,14 @@ class AdtArrayImpl implements AdtArray {
     @Override
     public void set(int pos, int elem) {
         if (highestWrittenIndex >= pos) {
-            liste.delete(pos + 1);
-            liste.insert(pos + 1, elem);
-        } else {
-            int diffToPos = pos - highestWrittenIndex;
-            while (diffToPos >= 0) {
-                liste.insert(diffToPos+highestWrittenIndex, 0);
+            liste.delete(pos);
+            liste.insert(pos, elem);
+        } else if(pos >= 0){
+            int diffToPos = 1;
+            while (diffToPos < pos) {
+                liste.insert(diffToPos, 0);
 
-                diffToPos--;
+                diffToPos++;
             }
             highestWrittenIndex = pos;
             set(pos, elem);
@@ -36,12 +36,33 @@ class AdtArrayImpl implements AdtArray {
 
     @Override
     public int get(int pos) {
-        return liste.retrieve(pos + 1);
+        return liste.retrieve(pos);
     }
 
     @Override
     public int length() {
-        return liste.length() + 1;
+        if (this.liste.isEmpty()) {
+            return -1;            
+        }
+        return highestWrittenIndex;
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        } else if(this.getClass() == o.getClass()){
+            AdtArray that = (AdtArray) o;
+            if(this.length() == that.length()){
+                for(int i = 0; i > this.length(); i++){
+                    if(this.get(i) != that.get(i)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
 }

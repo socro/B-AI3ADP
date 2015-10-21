@@ -44,39 +44,6 @@ public class AdtListTest {
     // @Test
     // public void hello() {}
     @Test
-    public void tollerinserttesterfueradtlisten() {
-        AdtList meinetestliste = AdtContainerFactory.adtList();
-        
-        AdtList meinezweitetestliste = AdtContainerFactory.adtList();
-        
-        meinezweitetestliste.insert(1, 2);
-        meinezweitetestliste.insert(1, 3);
-        meinezweitetestliste.insert(1, 4);
-        meinezweitetestliste.insert(1, 5);
-
-        assertEquals(true, meinetestliste.isEmpty());
-        assertEquals(0, meinetestliste.length());
-
-        meinetestliste.insert(0, 5);
-        assertEquals(0, meinetestliste.length());
- 
-        meinetestliste.insert(1, 3);
-        assertEquals(1, meinetestliste.length());
-
-        meinetestliste.insert(2, 2);
-        assertEquals(2, meinetestliste.length());
-
-        meinetestliste.insert(2, 1);
-        assertEquals(3, meinetestliste.length());
-                
-        assertEquals(0,meinetestliste.find(4));
-        assertEquals(3,meinetestliste.find(2));
-        
-        meinetestliste.concat(meinezweitetestliste);
-        assertEquals(7, meinetestliste.length());
-    }
-    
-    @Test
     public void isEmpty() {
         AdtList testList = AdtContainerFactory.adtList();
         assertEquals(true,testList.isEmpty());
@@ -97,6 +64,8 @@ public class AdtListTest {
         assertEquals(10,testList.retrieve(1));
         testList.insert(0,10);
         assertEquals(0,testList.retrieve(0));
+        
+        assertEquals(1,testList.length());
     }
     
     @Test
@@ -107,7 +76,73 @@ public class AdtListTest {
         testList.insert(3,30);
         testList.delete(3);
         
-        assertEquals(false,testList.find(10));
+        assertEquals(0,testList.find(30));
+        
+        testList.delete(4);
+        assertEquals(2,testList.length());
     }
-
+    
+    @Test
+    public void find() {
+        AdtList testList = AdtContainerFactory.adtList();
+        testList.insert(1, 22);
+        testList.insert(2, 23);
+        testList.insert(3, 2);
+        
+        assertEquals(0,testList.find(4));
+        assertEquals(3,testList.find(2));        
+    }
+    
+    @Test
+    public void retrieve() {
+        AdtList testList = AdtContainerFactory.adtList();
+        testList.insert(1, 22);
+        testList.insert(2, 23);
+        testList.insert(3, 2);
+        
+        assertEquals(22,testList.retrieve(1));
+        assertEquals(2,testList.retrieve(3)); 
+        assertEquals(0,testList.retrieve(5)); 
+    }
+    
+    @Test
+    public void concat() {
+        AdtList listeeins = AdtContainerFactory.adtList();
+        AdtList listezwei = AdtContainerFactory.adtList();
+        AdtList listedrei = AdtContainerFactory.adtList();
+        
+        listeeins.insert(1, 3);
+        listeeins.insert(2, 4);
+        listeeins.insert(3, 6);
+        listedrei.insert(1, 3);
+        listedrei.insert(2, 4);
+        listedrei.insert(3, 6);
+        
+        listezwei.insert(1, 8);
+        listezwei.insert(2, 9);
+        listezwei.insert(3, 7);
+        listedrei.insert(4, 8);
+        listedrei.insert(5, 9);
+        listedrei.insert(6, 7);
+        
+        listeeins.concat(listezwei);
+        
+        assertEquals(listeeins, listedrei);        
+    }    
+    
+    @Test
+    public void equals(){
+        AdtList listeeins = AdtContainerFactory.adtList();
+        AdtList listezwei = AdtContainerFactory.adtList();
+        
+        assertEquals(listeeins, listezwei);
+        
+        listeeins.insert(1, 5);
+        listezwei.insert(1, 5);
+        assertEquals(listeeins, listezwei);
+        
+        listeeins.delete(1);
+        
+        assertNotEquals(listezwei, listeeins);
+    }
 }

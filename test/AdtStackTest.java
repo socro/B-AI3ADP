@@ -81,7 +81,8 @@ public class AdtStackTest {
 
     @Test
     public void topTest() {
-        pushTest();
+        testStack.push(32);
+        testStack2.push(32);
 
         while (!testStack.isEmpty() && !testStack2.isEmpty()) {
             assertEquals(testStack.top(), testStack2.top());
@@ -99,8 +100,9 @@ public class AdtStackTest {
     public void isEmptyTest() {
         assertEquals(true, testStack.isEmpty());
         assertEquals(true, testStack2.isEmpty());
-        
-        pushTest();
+                
+        testStack.push(23);
+        testStack2.push(23);
         
         assertEquals(false, testStack.isEmpty());
         assertEquals(false, testStack2.isEmpty());
@@ -111,7 +113,8 @@ public class AdtStackTest {
     
     @Test
     public void isEqualTest() {
-        pushTest();
+        testStack.push(2314);
+        testStack2.push(2314);
         
         assertEquals(testStack, testStack2);
         

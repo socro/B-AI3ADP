@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import implementations.AdtContainerFactory;
+import interfaces.AdtQueue;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,4 +43,40 @@ public class AdtQueueTest {
     //
     // @Test
     // public void hello() {}
+    
+    @Test
+    public void front(){
+        AdtQueue testQueue = AdtContainerFactory.adtQueue();
+        testQueue.enQueue(2453);
+        
+        assertEquals(2453, testQueue.front());
+    }
+    
+    @Test
+    public void enQueue(){
+        AdtQueue testQueue = AdtContainerFactory.adtQueue();
+        testQueue.enQueue(2453);
+        
+        assertEquals(2453, testQueue.front());
+    }
+    
+    @Test
+    public void deQueue(){
+        AdtQueue testQueue = AdtContainerFactory.adtQueue();
+        assertEquals(true, testQueue.isEmpty());
+        testQueue.enQueue(2453);
+        assertEquals(false, testQueue.isEmpty());
+        testQueue.deQueue();        
+        assertEquals(true, testQueue.isEmpty());
+    }
+    
+    @Test
+    public void isEmpty(){
+        AdtQueue testQueue = AdtContainerFactory.adtQueue();
+        
+        assertEquals(true, testQueue.isEmpty());
+        
+        testQueue.enQueue(453);
+        assertEquals(false, testQueue.isEmpty());
+    }
 }

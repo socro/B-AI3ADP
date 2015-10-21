@@ -2,7 +2,6 @@ package implementations;
 
 import interfaces.AdtList;
 
-
 class AdtListImpl implements AdtList {
     
     private int[] liste = new int[1];
@@ -83,5 +82,25 @@ class AdtListImpl implements AdtList {
         System.arraycopy(arraylist, 0, templist, liste.length, arraylist.length);
         
         liste = templist;
-    }    
+    }
+    
+    @Override
+    public boolean equals(Object o){
+        if (this == o){
+            return true;
+        } else if(this.getClass() == o.getClass()){
+            AdtList that = (AdtList) o;
+            if(this.length()==that.length()){
+                int it = 0;
+                for(int i : this.liste){
+                    if(i != that.retrieve(it)){
+                        return false;
+                    }
+                    it++;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }
