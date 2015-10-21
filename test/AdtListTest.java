@@ -75,5 +75,39 @@ public class AdtListTest {
         meinetestliste.concat(diefolgendeadtlisteissponsoredbycocacolameinezweitelistedieichzumkopierenbrauche);
         assertEquals(7, meinetestliste.length());
     }
+    
+    @Test
+    public void isEmpty() {
+        AdtList testList = AdtContainerFactory.adtList();
+        assertEquals(true,testList.isEmpty());
+        
+        testList.insert(1, 3);
+        assertEquals(false,testList.isEmpty());
+        
+        testList.delete(1);
+        assertEquals(true,testList.isEmpty());
+    }
+    
+    @Test
+    public void insert() {
+        AdtList testList = AdtContainerFactory.adtList();
+        testList.insert(4,10);
+        assertEquals(0,testList.retrieve(3));
+        testList.insert(1,10);
+        assertEquals(10,testList.retrieve(1));
+        testList.insert(0,10);
+        assertEquals(0,testList.retrieve(0));
+    }
+    
+    @Test
+    public void delete() {
+        AdtList testList = AdtContainerFactory.adtList();
+        testList.insert(1,10);
+        testList.insert(2,20);
+        testList.insert(3,30);
+        testList.delete(3);
+        
+        assertEquals(false,testList.find(10));
+    }
 
 }
