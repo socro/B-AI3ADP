@@ -45,7 +45,7 @@ class AdtListImpl implements AdtList {
             int[] temp = new int[length()];
             
             System.arraycopy(liste, 0, temp, 0, pos);
-            System.arraycopy(liste, 0, temp, 0, length()-pos);
+            System.arraycopy(liste, pos+1, temp, pos, length()-pos);
             
             liste = temp;
         }

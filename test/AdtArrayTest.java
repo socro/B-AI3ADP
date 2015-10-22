@@ -13,10 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author Rene
- */
+
 public class AdtArrayTest {
     
     public AdtArrayTest() {
@@ -55,6 +52,16 @@ public class AdtArrayTest {
         assertEquals(-1, testArray1.length());
         assertEquals(17, testArray2.length());
         
+        AdtArray emptyAdtArray = AdtContainerFactory.adtArray();
+        AdtArray emptyAdtArray2 = AdtContainerFactory.adtArray();
+        
+        emptyAdtArray2.set(0, 1);							//An letzte Stelle ein Element einf�gen
+        emptyAdtArray.set(0, 1);							//An letzte Stelle ein Element einf�gen
+        assertEquals(true,emptyAdtArray.equals(emptyAdtArray2));
+
+        emptyAdtArray.set(0, 2);							//Ein Element ver�ndern
+        assertNotEquals(true,emptyAdtArray.equals(emptyAdtArray2));
+        
     }
     
     @Test
@@ -76,7 +83,7 @@ public class AdtArrayTest {
         assertEquals(-1, testArray.length());
         
         testArray.set(0, 1);
-        assertEquals(1, testArray.length());
+        assertEquals(0, testArray.length());
         
         testArray.set(4711, 321);
         assertEquals(4711, testArray.length());
@@ -89,14 +96,16 @@ public class AdtArrayTest {
         
         testArray1.set(1, 42);
         testArray1.set(5, 43);
+//        testArray1.set(4, 41);
+        System.out.println("sadsad");
         testArray2.set(1, 42);
         testArray2.set(5, 43);
         
         assertEquals(true, testArray1.equals(testArray2));
         
-        set methode vom array fixxen
-        length testen wegen 0er insert auf der liste
-        equals vom stack und queueueueue
+//        set methode vom array fixxen
+//        length testen wegen 0er insert auf der liste
+//        equals vom stack und queueueueue
                 
     }
 }

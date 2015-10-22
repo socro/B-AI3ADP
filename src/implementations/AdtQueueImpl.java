@@ -2,13 +2,15 @@ package implementations;
 
 import interfaces.AdtQueue;
 import interfaces.AdtStack;
+import java.util.ArrayList;
+import java.util.Collections;
 
 class AdtQueueImpl implements AdtQueue {
 
     static AdtQueue valueOf() {
         return new AdtQueueImpl();
     }
-    
+
     private final AdtStack input;
     private final AdtStack output;
 
@@ -19,10 +21,10 @@ class AdtQueueImpl implements AdtQueue {
 
     @Override
     public int front() {
-        if (output.isEmpty()){
+        if (output.isEmpty()) {
             stackToOutput();
         }
-        if (output.isEmpty()){
+        if (output.isEmpty()) {
             return 0;
         }
         return output.top();
@@ -35,7 +37,7 @@ class AdtQueueImpl implements AdtQueue {
 
     @Override
     public void deQueue() {
-        if(output.isEmpty()){
+        if (output.isEmpty()) {
             stackToOutput();
         }
         output.pop();
@@ -47,10 +49,58 @@ class AdtQueueImpl implements AdtQueue {
     }
 
     private void stackToOutput() {
-        while(!input.isEmpty()){
-                output.push(input.top());
-                input.pop();
-            }
+        while (!input.isEmpty()) {
+            output.push(input.top());
+            input.pop();
+        }
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        boolean returnValue = false;
+        boolean differFlag = false;
+        
+        
+
+        AdtQueue memoryThis = AdtContainerFactory.adtQueue();
+        AdtQueue memoryThat = AdtContainerFactory.adtQueue();
+
+        if (this == o) {
+            return true;
+        } else if (this.getClass() == o.getClass()) {
+            AdtQueue that = (AdtQueue) o;
+
+            while (!this.isEmpty() && !that.isEmpty()) {
+                if (this.front() != that.front()) {
+                    differFlag = true;
+                }
+                memoryThis.enQueue(this.front());
+                memoryThat.enQueue(that.front());
+
+                this.deQueue();
+                that.deQueue();
+            }
+
+            if (this.isEmpty() && that.isEmpty()) {
+                if (!differFlag) {
+                    returnValue = true;
+                }
+            } else {
+                while (!this.isEmpty()) {
+                    memoryThis.enQueue(this.front());
+                    this.deQueue();
+                }
+                while (!that.isEmpty()) {
+                    memoryThat.enQueue(that.front());
+                    that.deQueue();
+                }
+            }
+            while (!memoryThis.isEmpty()) {
+                    this.enQueue(memoryThis.front());
+                    memoryThis.deQueue();
+                }            
+            that = memoryThat;
+        }
+        return returnValue;
+    }
 }

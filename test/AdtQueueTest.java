@@ -79,4 +79,18 @@ public class AdtQueueTest {
         testQueue.enQueue(453);
         assertEquals(false, testQueue.isEmpty());
     }
+    
+    @Test
+    public void equals(){
+        AdtQueue testQueue1 = AdtContainerFactory.adtQueue();
+        AdtQueue testQueue2 = AdtContainerFactory.adtQueue();
+        
+        assertEquals(testQueue1, testQueue2);
+        
+        testQueue1.enQueue(0);
+        testQueue2.enQueue(0);
+        testQueue1.enQueue(15);
+        testQueue2.enQueue(15);
+        assertEquals(testQueue1, testQueue2);
+    }
 }

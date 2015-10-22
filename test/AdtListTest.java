@@ -56,6 +56,16 @@ public class AdtListTest {
     }
     
     @Test
+    public void length() {
+        AdtList testList = AdtContainerFactory.adtList();
+        assertEquals(0,testList.length());
+        
+        testList.insert(1,3);
+        assertEquals(1,testList.length());
+        
+    }
+    
+    @Test
     public void insert() {
         AdtList testList = AdtContainerFactory.adtList();
         testList.insert(4,10);
@@ -74,9 +84,9 @@ public class AdtListTest {
         testList.insert(1,10);
         testList.insert(2,20);
         testList.insert(3,30);
-        testList.delete(3);
+        testList.delete(2);
         
-        assertEquals(0,testList.find(30));
+        assertEquals(2,testList.find(30));
         
         testList.delete(4);
         assertEquals(2,testList.length());
