@@ -64,45 +64,4 @@ class AdtArrayImpl implements AdtArray {
         }
         return false;
     }
-
-    @Override
-    public void insertionsort(int posLeft, int posRight) {
-        
-        /**
-         * @TODO Christof fragen wie der Kack mit den Indizes funktioniert, damit man seinen
-         * Sort beschränken kann. Deine Mudda ist beschränkt!
-         */
-        
-        if(posLeft < 1) {
-            posLeft = 1;
-        }
-        
-        if(posRight > this.length()) {
-            posRight = this.length();
-        }
-        
-        for(int i = posLeft; i <= posRight; i++){
-            int j = i;
-            int temp = this.get(i);
-            
-            while(j > 0 && this.get(j-1) > temp){
-                this.set(j, this.get(j-1));
-                j--;
-            }
-            this.set(j, temp);
-        }
-    }
-    /**
-     * 
-     * @param modus Sets the Pivot-Selection to: {1 -> first element, 2 -> last element, 
-     * 3 -> median of 3 (first / middle / last), 4 -> random}
-     * @param insertionThreshold 
-     */
-
-    @Override
-    public void quicksort(int modus, int insertionThreshold) {
-        quicksort(modus, insertionThreshold);
-        
-    }
-
 }
