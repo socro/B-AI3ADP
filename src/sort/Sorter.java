@@ -11,11 +11,6 @@ public class Sorter {
 
     private Sorter(){}
     public static void insertionsort(AdtArray array, int begin, int end) {
-        /**
-         * @TODO Christof fragen wie der Kack mit den Indizes funktioniert,
-         * damit man seinen Sort beschränken kann. Deine Mudda ist beschränkt!
-         */
-
         if (begin < 1) {
             begin = 1;
         }
@@ -62,12 +57,16 @@ public class Sorter {
                 j--;
             }
             if(i < j){
-                int temp = i;
-                i = j;
-                j = temp;
+                int temp = array.get(i);
+                array.set(i, j);
+                array.set(j, temp);
             }
         }
-        return irechts;
+        int temp = array.get(i);
+        array.set(i,array.get(irechts));
+        array.set(irechts, temp);
+        
+        return i;
     }
 
     public static long insertionsortTime(AdtArray array, int begin, int end) {

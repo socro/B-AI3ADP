@@ -111,17 +111,6 @@ public class AdtArrayTest {
     
     @Test
     public void insertionsort() {
-        AdtArray testArray = AdtContainerFactory.adtArray();
-        testArray.set(0, 12);
-        testArray.set(1, 9);
-        testArray.set(2, 4);
-        testArray.set(3, 99);
-        testArray.set(4, 120);
-        testArray.set(5, 1);
-        testArray.set(6, 3);
-        testArray.set(7, 10);
         
-        testArray.insertionsort(1, 7);
-        System.out.println("Array sorted");
     }
 }
