@@ -1,4 +1,1 @@
-Insertionsort,Time + IO,rndsorted,pivotstart,3000,42,0,0,0,0,0,3001,4513969,2258484,0,32
-Insertionsort,Time + IO,rndsorted,pivotstart,3000,42,0,0,0,0,0,3001,4497843,2250421,0,16
-Insertionsort,Time + IO,rndsorted,pivotstart,3000,42,0,0,0,0,0,3001,4492275,2247637,0,16
-Insertionsort,Time + IO,rndsorted,pivotstart,3000,42,0,0,0,0,0,3001,4416351,2209675,0,15
+Insertionsort,Time + IO,rndsorted,pivotstart,3000,42,0,0,0,0,0,3001,4547873,2275436,0,7

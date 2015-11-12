@@ -1,4 +1,1 @@
-Quicksort,Time + IO,rndsorted,pivotstart,3000,42,0,17683,3186617,6696,0,3001,2406,1269,93,0
-Quicksort,Time + IO,rndsorted,pivotstart,3000,42,0,18089,1881037,7918,0,3001,4249,2211,94,0
-Quicksort,Time + IO,rndsorted,pivotstart,3000,42,0,17916,1449115,8112,0,3001,4555,2391,93,0
-Quicksort,Time + IO,rndsorted,pivotstart,3000,42,0,17957,2087596,7464,0,3001,3238,1696,78,0
+Quicksort,Time + IO,rndsorted,pivotstart,3000,42,0,18161,1257309,8482,0,3001,5039,2627,37,1

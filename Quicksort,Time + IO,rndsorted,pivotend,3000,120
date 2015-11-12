@@ -1,2 +1,0 @@
-Testname,Testarten,RNDSortierung,PivotPos,#Nr,Insertionthreshold,AlgRQ,AlgWQ,AdtRQ,AdtWQ,AlgRI,AlgWI,AdtRI,AdtWI,RtQ,RtI
-Quicksort,Time + IO,rndsorted,pivotend,3000,120,0,3972,26880,7514,0,3001,124190,63573,63,0

@@ -13,7 +13,7 @@ public class Sorter {
     private static final int AdtRI = 6;
     private static final int AdtWI = 7;
 
-    private static int insertionThreshold = 42;
+    private static int insertionThreshold = 2;
     private static long[] timeA = new long[2];
     private static long[] stepsA = new long[8];
     private static long insertionTime;
@@ -106,19 +106,19 @@ public class Sorter {
      * @return long[0] = quicksorttime | long[1] = insertiontime
      */
     public static long[] quicksortTime(AdtArray array, PivotMethod pivot) {
-        timeA[0] = System.currentTimeMillis();
         timeA[1] = 0;
+        timeA[0] = System.currentTimeMillis();
 
-        quicksortTime_(array, pivot, 0, array.length());
+        quicksortTime_(array, pivot, 0, array.length());        
 
-        timeA[1] = insertionTime;
-        timeA[0] = System.currentTimeMillis() - timeA[0] - insertionTime;
+        timeA[0] = System.currentTimeMillis() - timeA[0] - timeA[1];
         return timeA;
     }
 
     private static void quicksortTime_(AdtArray array, PivotMethod pivot, int left, int right) {
         if (right - left < getInsertionThreshold()) {
             insertionsortTime(array, left, right);
+            timeA[1] =+ insertionTime;
         } else {
             int pivotIndex = pivot.getPivotIndex(left, right);
             if (left < right) {
