@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Generator {
 
-    private final static int MAXRND = 200;
+    private final static int MAXRND = 10000;
     private final static int MINRND = 1;
 
     private final static String FILENAME = "zahlen.dat";
@@ -29,14 +29,14 @@ public class Generator {
     public static void sortnumLeft(int amount) {
         clearRNDNUMBERS();
         generateRNDNUMBERS(amount);
-        Sorter.insertionsort(RNDNUMBERS, 0, RNDNUMBERS.length());
+        Sorter.quicksort(RNDNUMBERS, (start,end)->(end/2));
         writeToDatFile();
     }
 
     public static void sortnumRight(int amount) {
         clearRNDNUMBERS();
         generateRNDNUMBERS(amount);
-        Sorter.insertionsort(RNDNUMBERS, 0, RNDNUMBERS.length());
+        Sorter.quicksort(RNDNUMBERS, (start,end)->(end/2));
         flipRNDNUMBERS();
         writeToDatFile();
     }
@@ -56,7 +56,7 @@ public class Generator {
                     returnValue.set(i, Integer.valueOf(splittedLine[i]));
                 }
             }
-
+            
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Explosionen!");
@@ -90,5 +90,6 @@ public class Generator {
         for (int i = 0; i < RNDNUMBERS.length(); i++) {
             temp.set(RNDNUMBERS.length() - i, RNDNUMBERS.get(i));
         }
+        RNDNUMBERS = temp;
     }
 }

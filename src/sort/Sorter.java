@@ -13,13 +13,17 @@ public class Sorter {
     private static final int AdtRI = 6;
     private static final int AdtWI = 7;
 
-    private static int noMagicNumber = 42;
+    private static int insertionThreshold = 42;
     private static long[] timeA = new long[2];
     private static long[] stepsA = new long[8];
     private static long insertionTime;
     private static long steps = 0;
 
     private static boolean subroutine = false;
+
+    public static int getInsertionThreshold() {
+        return insertionThreshold;
+    }
 
     private Sorter() {
     }
@@ -50,7 +54,7 @@ public class Sorter {
     }
 
     public static void quicksort_(AdtArray array, PivotMethod pivot, int left, int right) {
-        if (right - left < noMagicNumber) {
+        if (right - left < getInsertionThreshold()) {
             insertionsort(array, left, right);
         } else {
             int pivotIndex = pivot.getPivotIndex(left, right);
@@ -113,7 +117,7 @@ public class Sorter {
     }
 
     private static void quicksortTime_(AdtArray array, PivotMethod pivot, int left, int right) {
-        if (right - left < noMagicNumber) {
+        if (right - left < getInsertionThreshold()) {
             insertionsortTime(array, left, right);
         } else {
             int pivotIndex = pivot.getPivotIndex(left, right);
@@ -202,7 +206,7 @@ public class Sorter {
     }
 
     private static void quicksortSteps_(AdtArray array, PivotMethod pivot, int left, int right) {
-        if (right - left < noMagicNumber) {
+        if (right - left < getInsertionThreshold()) {
             subroutine = true;
             insertionsortSteps(array, left, right);
             subroutine = false;
