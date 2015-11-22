@@ -13,7 +13,7 @@ public class Sorter {
     private static final int AdtRI = 6;
     private static final int AdtWI = 7;
 
-    private static int insertionThreshold = 2;
+    private static int insertionThreshold = 12;
     private static long[] timeA = new long[2];
     private static long[] stepsA = new long[8];
     private static long insertionTime;

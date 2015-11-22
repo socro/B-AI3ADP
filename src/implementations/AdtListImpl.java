@@ -27,7 +27,7 @@ class AdtListImpl implements AdtList {
     @Override
     public void insert(int pos, int elem) {
         if(pos > 0 && pos <= liste.length) {            
-            int[] temp = new int[liste.length+1];
+            int[] temp = new int[liste.length+1000];
             
             System.arraycopy(liste, 0, temp, 0, pos);
             temp[pos] = elem;

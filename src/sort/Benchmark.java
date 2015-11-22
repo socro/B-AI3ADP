@@ -16,77 +16,77 @@ public class Benchmark {
     
     public static void main(String args[]) {
         System.out.println("Beginn des Benchmark");
-//        AdtArray klauckarray = Generator.importNums("zahlen_klauck_ohnenewline.dat");
-//        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);
-//        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));        
-//        outputToCSV("Insertionsort_Klauck,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(klauckarray,0,klauckarray.length()),new long[]{0,Sorter.insertionsortTime(klauckarray,0,klauckarray.length())});
+        AdtArray klauckarray = Generator.importNums("klauck.dat");
+        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);
+        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));        
+        outputToCSV("Insertionsort_Klauck,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(klauckarray,0,klauckarray.length()),new long[]{0,Sorter.insertionsortTime(klauckarray,0,klauckarray.length())});
+        
+//        Generator.sortnum(howmanynumbersdoyouwant);
+//        AdtArray quicksortArray = Generator.importNums("zahlen.dat");
+//        AdtArray insertionsortArray = Generator.importNums("zahlen.dat");
+//        Generator.sortnumLeft(howmanynumbersdoyouwant);
+//        AdtArray quicksortArray_leftsorted = Generator.importNums("zahlen.dat");
+//        AdtArray insertionsortArray_leftsorted = Generator.importNums("zahlen.dat");
+//        Generator.sortnumRight(howmanynumbersdoyouwant);
+//        AdtArray quicksortArray_rightsorted = Generator.importNums("zahlen.dat");
+//        AdtArray insertionsortArray_rightsorted = Generator.importNums("zahlen.dat");
+//
+//        outputToCSV("Quicksort,Time + IO,rndsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray, (int start, int end) -> (end)),Sorter.quicksortTime(quicksortArray, (int start, int end) -> (end)));        
+//        outputToCSV("Insertionsort,Time + IO,rndsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray,0,insertionsortArray.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray,0,insertionsortArray.length())});
 //        
-        Generator.sortnum(howmanynumbersdoyouwant);
-        AdtArray quicksortArray = Generator.importNums("zahlen.dat");
-        AdtArray insertionsortArray = Generator.importNums("zahlen.dat");
-        Generator.sortnumLeft(howmanynumbersdoyouwant);
-        AdtArray quicksortArray_leftsorted = Generator.importNums("zahlen.dat");
-        AdtArray insertionsortArray_leftsorted = Generator.importNums("zahlen.dat");
-        Generator.sortnumRight(howmanynumbersdoyouwant);
-        AdtArray quicksortArray_rightsorted = Generator.importNums("zahlen.dat");
-        AdtArray insertionsortArray_rightsorted = Generator.importNums("zahlen.dat");
-
-        outputToCSV("Quicksort,Time + IO,rndsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray, (int start, int end) -> (end)),Sorter.quicksortTime(quicksortArray, (int start, int end) -> (end)));        
-        outputToCSV("Insertionsort,Time + IO,rndsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray,0,insertionsortArray.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray,0,insertionsortArray.length())});
-        
-        outputToCSV("Quicksort,Time + IO,leftsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_leftsorted, (int start, int end) -> (end)),Sorter.quicksortTime(quicksortArray_leftsorted, (int start, int end) -> (end)));
-        outputToCSV("Insertionsort,Time + IO,leftsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length()),new long[]{0,0,Sorter.insertionsortTime(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length())});
-                
-        outputToCSV("Quicksort,Time + IO,rightsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_rightsorted, (int start, int end) -> (end)),Sorter.quicksortTime(quicksortArray_rightsorted, (int start, int end) -> (end)));
-        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
-        
-        
-        Generator.sortnum(howmanynumbersdoyouwant);
-        quicksortArray = Generator.importNums("zahlen.dat");
-        insertionsortArray = Generator.importNums("zahlen.dat");
-        Generator.sortnumLeft(howmanynumbersdoyouwant);
-        quicksortArray_leftsorted = Generator.importNums("zahlen.dat");
-        insertionsortArray_leftsorted = Generator.importNums("zahlen.dat");
-        Generator.sortnumRight(howmanynumbersdoyouwant);
-        quicksortArray_rightsorted = Generator.importNums("zahlen.dat");
-        insertionsortArray_rightsorted = Generator.importNums("zahlen.dat");
-        
-        outputToCSV("Quicksort,Time + IO,rndsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray, (int start, int end) -> (start)),Sorter.quicksortTime(quicksortArray, (int start, int end) -> (start)));        
-        outputToCSV("Insertionsort,Time + IO,rndsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray,0,insertionsortArray.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray,0,insertionsortArray.length())});
-        
-        outputToCSV("Quicksort,Time + IO,leftsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_leftsorted, (int start, int end) -> (start)),Sorter.quicksortTime(quicksortArray_leftsorted, (int start, int end) -> (start)));
-        outputToCSV("Insertionsort,Time + IO,leftsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length()),new long[]{0,0,Sorter.insertionsortTime(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length())});
-                
-        outputToCSV("Quicksort,Time + IO,rightsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_rightsorted, (int start, int end) -> (start)),Sorter.quicksortTime(quicksortArray_rightsorted, (int start, int end) -> (start)));
-        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
-        
-        
-        Generator.sortnum(howmanynumbersdoyouwant);
-        quicksortArray = Generator.importNums("zahlen.dat");
-        insertionsortArray = Generator.importNums("zahlen.dat");
-        Generator.sortnumLeft(howmanynumbersdoyouwant);
-        quicksortArray_leftsorted = Generator.importNums("zahlen.dat");
-        insertionsortArray_leftsorted = Generator.importNums("zahlen.dat");
-        Generator.sortnumRight(howmanynumbersdoyouwant);
-        quicksortArray_rightsorted = Generator.importNums("zahlen.dat");
-        insertionsortArray_rightsorted = Generator.importNums("zahlen.dat");
-        
-        final int medianindexquicksortArray = medianof3(0, quicksortArray.length(), quicksortArray);
-        final int medianindexquicksortArray_leftsorted = medianof3(0, quicksortArray.length(), quicksortArray);
-        final int medianindexquicksortArray_rightsorted = medianof3(0, quicksortArray.length(), quicksortArray);
-        
-        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(quicksortArray, (int start, int end) -> (medianindexquicksortArray)));        
-        outputToCSV("Insertionsort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray,0,insertionsortArray.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray,0,insertionsortArray.length())});
-        
-        outputToCSV("Quicksort,Time + IO,leftsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_leftsorted, (int start, int end) -> (medianindexquicksortArray_leftsorted)),Sorter.quicksortTime(quicksortArray_leftsorted, (int start, int end) -> (medianindexquicksortArray_leftsorted)));
-        outputToCSV("Insertionsort,Time + IO,leftsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length()),new long[]{0,0,Sorter.insertionsortTime(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length())});
-                
-        outputToCSV("Quicksort,Time + IO,rightsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_rightsorted, (int start, int end) -> (medianindexquicksortArray_rightsorted)),Sorter.quicksortTime(quicksortArray_rightsorted, (int start, int end) -> (medianindexquicksortArray_rightsorted)));
-        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
-        
-        
-        //----------------------------------------
-        System.out.println("Ende vom Benchmark");
+//        outputToCSV("Quicksort,Time + IO,leftsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_leftsorted, (int start, int end) -> (end)),Sorter.quicksortTime(quicksortArray_leftsorted, (int start, int end) -> (end)));
+//        outputToCSV("Insertionsort,Time + IO,leftsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length()),new long[]{0,0,Sorter.insertionsortTime(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length())});
+//                
+//        outputToCSV("Quicksort,Time + IO,rightsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_rightsorted, (int start, int end) -> (end)),Sorter.quicksortTime(quicksortArray_rightsorted, (int start, int end) -> (end)));
+//        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
+//        
+//        
+//        Generator.sortnum(howmanynumbersdoyouwant);
+//        quicksortArray = Generator.importNums("zahlen.dat");
+//        insertionsortArray = Generator.importNums("zahlen.dat");
+//        Generator.sortnumLeft(howmanynumbersdoyouwant);
+//        quicksortArray_leftsorted = Generator.importNums("zahlen.dat");
+//        insertionsortArray_leftsorted = Generator.importNums("zahlen.dat");
+//        Generator.sortnumRight(howmanynumbersdoyouwant);
+//        quicksortArray_rightsorted = Generator.importNums("zahlen.dat");
+//        insertionsortArray_rightsorted = Generator.importNums("zahlen.dat");
+//        
+//        outputToCSV("Quicksort,Time + IO,rndsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray, (int start, int end) -> (start)),Sorter.quicksortTime(quicksortArray, (int start, int end) -> (start)));        
+//        outputToCSV("Insertionsort,Time + IO,rndsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray,0,insertionsortArray.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray,0,insertionsortArray.length())});
+//        
+//        outputToCSV("Quicksort,Time + IO,leftsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_leftsorted, (int start, int end) -> (start)),Sorter.quicksortTime(quicksortArray_leftsorted, (int start, int end) -> (start)));
+//        outputToCSV("Insertionsort,Time + IO,leftsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length()),new long[]{0,0,Sorter.insertionsortTime(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length())});
+//                
+//        outputToCSV("Quicksort,Time + IO,rightsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_rightsorted, (int start, int end) -> (start)),Sorter.quicksortTime(quicksortArray_rightsorted, (int start, int end) -> (start)));
+//        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
+//        
+//        
+//        Generator.sortnum(howmanynumbersdoyouwant);
+//        quicksortArray = Generator.importNums("zahlen.dat");
+//        insertionsortArray = Generator.importNums("zahlen.dat");
+//        Generator.sortnumLeft(howmanynumbersdoyouwant);
+//        quicksortArray_leftsorted = Generator.importNums("zahlen.dat");
+//        insertionsortArray_leftsorted = Generator.importNums("zahlen.dat");
+//        Generator.sortnumRight(howmanynumbersdoyouwant);
+//        quicksortArray_rightsorted = Generator.importNums("zahlen.dat");
+//        insertionsortArray_rightsorted = Generator.importNums("zahlen.dat");
+//        
+//        final int medianindexquicksortArray = medianof3(0, quicksortArray.length(), quicksortArray);
+//        final int medianindexquicksortArray_leftsorted = medianof3(0, quicksortArray.length(), quicksortArray);
+//        final int medianindexquicksortArray_rightsorted = medianof3(0, quicksortArray.length(), quicksortArray);
+//        
+//        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(quicksortArray, (int start, int end) -> (medianindexquicksortArray)));        
+//        outputToCSV("Insertionsort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray,0,insertionsortArray.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray,0,insertionsortArray.length())});
+//        
+//        outputToCSV("Quicksort,Time + IO,leftsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_leftsorted, (int start, int end) -> (medianindexquicksortArray_leftsorted)),Sorter.quicksortTime(quicksortArray_leftsorted, (int start, int end) -> (medianindexquicksortArray_leftsorted)));
+//        outputToCSV("Insertionsort,Time + IO,leftsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length()),new long[]{0,0,Sorter.insertionsortTime(insertionsortArray_leftsorted,0,insertionsortArray_leftsorted.length())});
+//                
+//        outputToCSV("Quicksort,Time + IO,rightsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(quicksortArray_rightsorted, (int start, int end) -> (medianindexquicksortArray_rightsorted)),Sorter.quicksortTime(quicksortArray_rightsorted, (int start, int end) -> (medianindexquicksortArray_rightsorted)));
+//        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
+//        
+//        
+//        //----------------------------------------
+//        System.out.println("Ende vom Benchmark");
     }
 
     public static void outputToCSV(String filename,long[] ioTest,long[] runtimeTest) {
