@@ -16,12 +16,12 @@ public class Benchmark {
     
     public static void main(String args[]) {
         System.out.println("Beginn des Benchmark");
-        AdtArray klauckarray = Generator.importNums("klauck.dat");
-        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);
-        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));        
-        outputToCSV("Insertionsort_Klauck,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(klauckarray,0,klauckarray.length()),new long[]{0,Sorter.insertionsortTime(klauckarray,0,klauckarray.length())});
+//        AdtArray klauckarray = Generator.importNums("klauck.dat");
+//        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);
+//        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));        
+//        outputToCSV("Insertionsort_Klauck,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(klauckarray,0,klauckarray.length()),new long[]{0,Sorter.insertionsortTime(klauckarray,0,klauckarray.length())});
         
-//        Generator.sortnum(howmanynumbersdoyouwant);
+        Generator.sortnum(howmanynumbersdoyouwant);
 //        AdtArray quicksortArray = Generator.importNums("zahlen.dat");
 //        AdtArray insertionsortArray = Generator.importNums("zahlen.dat");
 //        Generator.sortnumLeft(howmanynumbersdoyouwant);
@@ -86,7 +86,7 @@ public class Benchmark {
 //        
 //        
 //        //----------------------------------------
-//        System.out.println("Ende vom Benchmark");
+        System.out.println("Ende vom Benchmark");
     }
 
     public static void outputToCSV(String filename,long[] ioTest,long[] runtimeTest) {
