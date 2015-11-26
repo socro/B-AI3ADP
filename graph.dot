@@ -3,3 +3,13 @@ digraph AVLBaum
 9 -> 8;
 9 -> 10;
 }
+digraph AVLBaum
+{
+9 -> 8;
+9 -> 10;
+}
+digraph AVLBaum
+{
+9 -> 8;
+9 -> 10;
+}
