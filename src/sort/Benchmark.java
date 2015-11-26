@@ -1,5 +1,6 @@
 package sort;
 
+import implementations.AdtAVLTree;
 import interfaces.AdtArray;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -9,37 +10,50 @@ import java.io.Writer;
 import java.util.Random;
 
 public class Benchmark {
-    
+
     private static final Random rnd = new Random();
     private static boolean firstrun = true;
     private static String nl = System.lineSeparator();
-    
+    private static boolean allowduplicates = true;
+
     private static int howmanynumbersdoyouwant = 3000;
-    
-    public static void main(String args[]) {
+
+    public static void main(String args[]) throws InterruptedException {
         System.out.println("Beginn des Benchmark");
-        AdtArray klauckarray = Generator.importNums("klauck.dat");
-        System.out.println("read finished");
-        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);        
-        outputToCSV("Quicksort,Time + IO,klauck,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));
-        System.out.println("quicksort finsihed");
-        
-        klauckarray = Generator.importNums("klauck.dat");
-        System.out.println("read finished");    
-        outputToCSV("Quicksort,Time + IO,klauck,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (end)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (end)));
-        System.out.println("quicksort finsihed");
-        
-        klauckarray = Generator.importNums("klauck.dat");
-        System.out.println("read finished");    
-        outputToCSV("Quicksort,Time + IO,klauck,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (start)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (start)));
-        System.out.println("quicksort finsihed");
-        
-        
-        final int rndindex = rnd.nextInt(klauckarray.length()+1);
-        klauckarray = Generator.importNums("klauck.dat");
-        System.out.println("read finished");    
-        outputToCSV("Quicksort,Time + IO,klauck,pivotrnd,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (rndindex)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (rndindex)));
-        System.out.println("quicksort finsihed");
+        Generator.sortnum(howmanynumbersdoyouwant, !allowduplicates);
+        AdtArray temparray = Generator.importNums("zahlen.dat");
+        AdtAVLTree testtree = AdtAVLTree.create();
+        AdtAVLTree root = testtree;
+        for (int i = 0; i < temparray.length(); i++) {
+            testtree.insert(temparray.get(i));
+            while (root.parent != null) {
+                root = root.parent;
+            }
+            root.print("graph" + i);
+        }
+
+//        AdtArray klauckarray = Generator.importNums("klauck.dat");
+//        System.out.println("read finished");
+//        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);        
+//        outputToCSV("Quicksort,Time + IO,klauck,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));
+//        System.out.println("quicksort finsihed");
+//        
+//        klauckarray = Generator.importNums("klauck.dat");
+//        System.out.println("read finished");    
+//        outputToCSV("Quicksort,Time + IO,klauck,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (end)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (end)));
+//        System.out.println("quicksort finsihed");
+//        
+//        klauckarray = Generator.importNums("klauck.dat");
+//        System.out.println("read finished");    
+//        outputToCSV("Quicksort,Time + IO,klauck,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (start)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (start)));
+//        System.out.println("quicksort finsihed");
+//        
+//        
+//        final int rndindex = rnd.nextInt(klauckarray.length()+1);
+//        klauckarray = Generator.importNums("klauck.dat");
+//        System.out.println("read finished");    
+//        outputToCSV("Quicksort,Time + IO,klauck,pivotrnd,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (rndindex)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (rndindex)));
+//        System.out.println("quicksort finsihed");
 //        
 //        Generator.sortnum(howmanynumbersdoyouwant);
 //        AdtArray quicksortArray = Generator.importNums("zahlen.dat");
@@ -105,30 +119,30 @@ public class Benchmark {
 //        outputToCSV("Insertionsort,Time + IO,rightsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length()),new long[]{0,Sorter.insertionsortTime(insertionsortArray_rightsorted,0,insertionsortArray_rightsorted.length())});
 //        
 //        
-//        //----------------------------------------
-//        System.out.println("Ende vom Benchmark");
+        //----------------------------------------
+        System.out.println("Ende vom Benchmark");
     }
 
-    public static void outputToCSV(String filename,long[] ioTest,long[] runtimeTest) {
-        if(firstrun){
+    public static void outputToCSV(String filename, long[] ioTest, long[] runtimeTest) {
+        if (firstrun) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(filename, true), "utf-8"))) {
+                    new FileOutputStream(filename, true), "utf-8"))) {
                 writer.write("Testname,Testarten,RNDSortierung,PivotPos,#Nr,Insertionthreshold,AlgRQ,AlgWQ,AdtRQ,AdtWQ,AlgRI,AlgWI,AdtRI,AdtWI,RtQ,RtI");
                 writer.write(nl);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-            firstrun= false;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            firstrun = false;
         }
 
-        long[] args = new long[runtimeTest.length+ioTest.length];
+        long[] args = new long[runtimeTest.length + ioTest.length];
         System.arraycopy(ioTest, 0, args, 0, ioTest.length);
         System.arraycopy(runtimeTest, 0, args, ioTest.length, runtimeTest.length);
-        
+
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(filename, true), "utf-8"))) {
-                writer.write(filename + ",");
+            writer.write(filename + ",");
             // print line
             for (int i = 0; i < args.length; i++) {
                 if (i != args.length - 1) {
@@ -147,23 +161,23 @@ public class Benchmark {
 
     private static int medianof3(int start, int end, AdtArray array1) {
         int middleindex = (end + start) / 2;
-        
-        int valuestart  = array1.get(start);
+
+        int valuestart = array1.get(start);
         int valuemiddle = array1.get(middleindex);
-        int valueend    = array1.get(end);
+        int valueend = array1.get(end);
         int medianvalue = Math.min(Math.min(valuestart, valuemiddle), valueend);
-        
+
         int medianindex = -1;
-        
-        for(int i = 0; i < array1.length(); i++){
-            if (array1.get(i) == medianvalue){
+
+        for (int i = 0; i < array1.length(); i++) {
+            if (array1.get(i) == medianvalue) {
                 medianindex = i;
                 break;
             }
         }
-        
+
         final int returnvalue = medianindex;
-        
-        return returnvalue;                
+
+        return returnvalue;
     }
 }

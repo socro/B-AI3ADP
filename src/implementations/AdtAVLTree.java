@@ -63,7 +63,7 @@ public class AdtAVLTree {
             rightheight++;
             rightChild.insert(element);
             checkForBalance();
-        }
+        }        
     }
 
     public void delete(int element) {
@@ -105,7 +105,7 @@ public class AdtAVLTree {
                 writer.write("}" + nl);
                 Process p = Runtime.getRuntime().exec("cmd");
                 PrintWriter stdin = new PrintWriter(p.getOutputStream());
-                stdin.println("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe -Tpng " + filename + ".dot > " + filename + ".png");// write any other commands you want here
+                stdin.println("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe -Tsvg " + filename + ".dot > " + filename + ".png");// write any other commands you want here
                 stdin.close();
             }
         } catch (IOException e) {
@@ -119,35 +119,39 @@ public class AdtAVLTree {
 
     private void checkForBalance() {
         // Linksrotation
-        if (rightheight - leftheight > 1) {
+        if (this.rightheight - this.leftheight > 1) {
             rotateLeft();
-            if (rightheight - leftheight < -1) {
-                rightChild.rotateRight();
+            if (this.rightheight - this.leftheight < -1) {
+                this.rightChild.rotateRight();
                 rotateLeft();
             }
         } else // Rechtsrotation
-        if (rightheight - leftheight < -1) {
+        if (this.rightheight - this.leftheight < -1) {
             rotateRight();
-            if (rightheight - leftheight > 1) {
-                leftChild.rotateLeft();
+            if (this.rightheight - this.leftheight > 1) {
+                this.leftChild.rotateLeft();
                 rotateRight();
             }
         }
     }
 
     private void rotateRight() {
-        AdtAVLTree tempLeftChild = leftChild;
-        leftChild = leftChild.rightChild;
+        AdtAVLTree tempLeftChild = this.leftChild;
+        this.leftChild = this.leftChild.rightChild;
         tempLeftChild.rightChild = this;
-        tempLeftChild.parent = parent;
-        parent = tempLeftChild;
+        tempLeftChild.parent = this.parent;
+        this.parent = tempLeftChild;
+        parent.rightheight++;
+        this.leftheight--;        
     }
 
     private void rotateLeft() {
-        AdtAVLTree tempRightChild = rightChild;
-        rightChild = rightChild.leftChild;
+        AdtAVLTree tempRightChild = this.rightChild;
+        this.rightChild = this.rightChild.leftChild;
         tempRightChild.leftChild = this;
         tempRightChild.parent = parent;
-        parent = tempRightChild;
+        this.parent = tempRightChild;
+        parent.leftheight++;
+        this.rightheight--;
     }
 }

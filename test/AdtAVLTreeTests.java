@@ -47,13 +47,15 @@ public class AdtAVLTreeTests {
     // public void hello() {}
     @Test
     public void setUpTrees() throws InterruptedException {
-        testtree.insert(8);
-        testtree.insert(9);
-        testtree.insert(10);
-        AdtAVLTree root = testtree;
-        while(root.parent != null){
-            root = root.parent;
-        }
-        root.print("graph");
+//        AdtAVLTree root = this;
+//        while(root.parent != null){
+//            root = root.parent;
+//        }
+        testtree = testtree.insert(8);
+        testtree = testtree.insert(9);
+        testtree = testtree.insert(10);
+//        testtree = testtree.insert(11);
+//        testtree = testtree.insert(12);
+        testtree.print("graph");
     }
 }

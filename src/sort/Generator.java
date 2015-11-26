@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Generator {
@@ -20,23 +22,23 @@ public class Generator {
 
     private static AdtArray RNDNUMBERS = AdtContainerFactory.adtArray();
 
-    public static void sortnum(int amount) {
+    public static void sortnum(int amount, boolean allowduplicates) {
         clearRNDNUMBERS();
-        generateRNDNUMBERS(amount);
+        generateRNDNUMBERS(amount, allowduplicates);
         writeToDatFile();
     }
 
-    public static void sortnumLeft(int amount) {
+    public static void sortnumLeft(int amount, boolean allowduplicates) {
         clearRNDNUMBERS();
-        generateRNDNUMBERS(amount);
-        Sorter.quicksort(RNDNUMBERS, (start,end)->(end/2));
+        generateRNDNUMBERS(amount, allowduplicates);
+        Sorter.quicksort(RNDNUMBERS, (start, end) -> (end / 2));
         writeToDatFile();
     }
 
-    public static void sortnumRight(int amount) {
+    public static void sortnumRight(int amount, boolean allowduplicates) {
         clearRNDNUMBERS();
-        generateRNDNUMBERS(amount);
-        Sorter.quicksort(RNDNUMBERS, (start,end)->(end/2));
+        generateRNDNUMBERS(amount, allowduplicates);
+        Sorter.quicksort(RNDNUMBERS, (start, end) -> (end / 2));
         flipRNDNUMBERS();
         writeToDatFile();
     }
@@ -56,7 +58,7 @@ public class Generator {
                     returnValue.set(i, Integer.valueOf(splittedLine[i]));
                 }
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Explosionen!");
@@ -64,10 +66,22 @@ public class Generator {
         return returnValue;
     }
 
-    private static void generateRNDNUMBERS(int amount) {
-        for (int i = 0; i < amount; i++) {
-            RNDNUMBERS.set(i, ThreadLocalRandom.current().nextInt(MINRND, MAXRND + 1));
+    private static void generateRNDNUMBERS(int amount, boolean allowduplicates) {
+        if (allowduplicates) {
+            for (int i = 0; i < amount; i++) {
+                RNDNUMBERS.set(i, ThreadLocalRandom.current().nextInt(MINRND, MAXRND + 1));
+            }
+        } else {
+            ArrayList<Integer> templist = new ArrayList<>();
+            for (int i = 0; i < amount; i++) {
+                templist.add(i);
+            }
+            Collections.shuffle(templist);
+            for(int i = 0; i < templist.size(); i++){
+                RNDNUMBERS.set(i, templist.get(i));
+            }
         }
+
     }
 
     private static void writeToDatFile() {
