@@ -26,13 +26,14 @@ class AdtArrayImpl implements AdtArray {
                     this.liste.insert(i + 1, 0);
                 }
                 this.liste.insert(pos + 1, elem);
-                highestWrittenIndex = pos;
+                this.highestWrittenIndex = pos;
             } else {
                 this.liste.insert(pos + 1, elem);
                 this.liste.delete(pos + 2);
             }
 
         }
+
     }
 
     @Override

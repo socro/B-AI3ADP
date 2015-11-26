@@ -6,9 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.Random;
 
 public class Benchmark {
     
+    private static final Random rnd = new Random();
     private static boolean firstrun = true;
     private static String nl = System.lineSeparator();
     
@@ -16,12 +18,30 @@ public class Benchmark {
     
     public static void main(String args[]) {
         System.out.println("Beginn des Benchmark");
-//        AdtArray klauckarray = Generator.importNums("klauck.dat");
-//        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);
-//        outputToCSV("Quicksort,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));        
-//        outputToCSV("Insertionsort_Klauck,Time + IO,rndsorted,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.insertionsortSteps(klauckarray,0,klauckarray.length()),new long[]{0,Sorter.insertionsortTime(klauckarray,0,klauckarray.length())});
+        AdtArray klauckarray = Generator.importNums("klauck.dat");
+        System.out.println("read finished");
+        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);        
+        outputToCSV("Quicksort,Time + IO,klauck,pivotmedian,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (medianindexquicksortArray)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (medianindexquicksortArray)));
+        System.out.println("quicksort finsihed");
         
-        Generator.sortnum(howmanynumbersdoyouwant);
+        klauckarray = Generator.importNums("klauck.dat");
+        System.out.println("read finished");    
+        outputToCSV("Quicksort,Time + IO,klauck,pivotend,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (end)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (end)));
+        System.out.println("quicksort finsihed");
+        
+        klauckarray = Generator.importNums("klauck.dat");
+        System.out.println("read finished");    
+        outputToCSV("Quicksort,Time + IO,klauck,pivotstart,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (start)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (start)));
+        System.out.println("quicksort finsihed");
+        
+        
+        final int rndindex = rnd.nextInt(klauckarray.length()+1);
+        klauckarray = Generator.importNums("klauck.dat");
+        System.out.println("read finished");    
+        outputToCSV("Quicksort,Time + IO,klauck,pivotrnd,"+howmanynumbersdoyouwant+","+Sorter.getInsertionThreshold(),Sorter.quicksortSteps(klauckarray, (int start, int end) -> (rndindex)),Sorter.quicksortTime(klauckarray, (int start, int end) -> (rndindex)));
+        System.out.println("quicksort finsihed");
+//        
+//        Generator.sortnum(howmanynumbersdoyouwant);
 //        AdtArray quicksortArray = Generator.importNums("zahlen.dat");
 //        AdtArray insertionsortArray = Generator.importNums("zahlen.dat");
 //        Generator.sortnumLeft(howmanynumbersdoyouwant);
@@ -86,7 +106,7 @@ public class Benchmark {
 //        
 //        
 //        //----------------------------------------
-        System.out.println("Ende vom Benchmark");
+//        System.out.println("Ende vom Benchmark");
     }
 
     public static void outputToCSV(String filename,long[] ioTest,long[] runtimeTest) {
