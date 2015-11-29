@@ -20,17 +20,14 @@ public class Benchmark {
 
     public static void main(String args[]) throws InterruptedException {
         System.out.println("Beginn des Benchmark");
-        Generator.sortnum(howmanynumbersdoyouwant, !allowduplicates);
+        //Generator.sortnum(howmanynumbersdoyouwant, !allowduplicates);
         AdtArray temparray = Generator.importNums("zahlen.dat");
         AdtAVLTree testtree = AdtAVLTree.create();
-        AdtAVLTree root = testtree;
+//        AdtAVLTree root = testtree;
         for (int i = 0; i < temparray.length(); i++) {
-            testtree.insert(temparray.get(i));
-            while (root.parent != null) {
-                root = root.parent;
-            }
-            root.print("graph" + i);
+            testtree.insert(temparray.get(i));      
         }
+        testtree.print("graph");
 
 //        AdtArray klauckarray = Generator.importNums("klauck.dat");
 //        System.out.println("read finished");
