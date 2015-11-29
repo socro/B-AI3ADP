@@ -40,11 +40,11 @@ public class AdtAVLTree {
         }
     }
 
-    public void insert(int element) {
+    public AdtAVLTree insert(int element) {
         // Wenn AVL Baum leer, dann füge Wert als Wurzel ein
         if (value == -1) {
             value = element;
-
+            return this;
         } // Ansonsten wenn kleiner, füge links ein
         else if (element < value) {
             if (leftChild == null) {
@@ -53,7 +53,8 @@ public class AdtAVLTree {
             }
             leftheight++;
             leftChild.insert(element);
-            checkForBalance();
+            // Gibt die neue Wurzel zurück
+            return checkForBalance();
         } // Ansonsten füge rechts ein
         else {
             if (rightChild == null) {
@@ -62,8 +63,9 @@ public class AdtAVLTree {
             }
             rightheight++;
             rightChild.insert(element);
-            checkForBalance();
-        }        
+            // Gibt die neue Wurzel zurück
+            return checkForBalance();
+        }
     }
 
     public void delete(int element) {
@@ -82,7 +84,7 @@ public class AdtAVLTree {
     public void print(String filename) throws InterruptedException {
 
         String nl = System.lineSeparator();
-
+        boolean waitForHeaderGodDamit = true;
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(filename + ".dot", true), "utf-8"))) {
             // Nur die Wurzel schreibt header und footer
@@ -93,23 +95,32 @@ public class AdtAVLTree {
             if (leftChild != null) {
                 writer.write(this.value + " -> " + this.leftChild.value + ";");
                 writer.write(nl);
-                leftChild.print(filename);
             }
             if (rightChild != null) {
                 writer.write(this.value + " -> " + this.rightChild.value + ";");
                 writer.write(nl);
-                rightChild.print(filename);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (leftChild != null) {
+            leftChild.print(filename);
+        }
+        if (rightChild != null) {
+            rightChild.print(filename);
+        }
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(filename + ".dot", true), "utf-8"))) {
             // Nur die Wurzel schreibt header und footer
             if (parent == null) {
                 writer.write("}" + nl);
                 Process p = Runtime.getRuntime().exec("cmd");
                 PrintWriter stdin = new PrintWriter(p.getOutputStream());
-                stdin.println("C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe -Tsvg " + filename + ".dot > " + filename + ".png");// write any other commands you want here
+                stdin.println("C:\\leckmich\\dot.exe -Tsvg " + filename + ".dot > " + filename + ".svg");// write any other commands you want here
                 stdin.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
     }
 
@@ -117,41 +128,68 @@ public class AdtAVLTree {
         this.parent = parent;
     }
 
-    private void checkForBalance() {
+    private AdtAVLTree checkForBalance() {
         // Linksrotation
         if (this.rightheight - this.leftheight > 1) {
-            rotateLeft();
-            if (this.rightheight - this.leftheight < -1) {
-                this.rightChild.rotateRight();
-                rotateLeft();
+            AdtAVLTree temptree = rotateLeft();
+            if (temptree.rightheight - temptree.leftheight < -1) {
+                temptree = temptree.leftChild.rotateLeft();
+                return temptree.rotateRight();
             }
-        } else // Rechtsrotation
-        if (this.rightheight - this.leftheight < -1) {
-            rotateRight();
-            if (this.rightheight - this.leftheight > 1) {
-                this.leftChild.rotateLeft();
-                rotateRight();
+            return temptree;
+        } // Rechtsrotation
+        else if (this.rightheight - this.leftheight < -1) {
+            AdtAVLTree temptree = rotateRight();
+            if (temptree.rightheight - temptree.leftheight > 1) {
+                temptree = temptree.rightChild.rotateRight();
+                return temptree.rotateLeft();
             }
+            return temptree;
         }
+        return this;
     }
 
-    private void rotateRight() {
-        AdtAVLTree tempLeftChild = this.leftChild;
-        this.leftChild = this.leftChild.rightChild;
-        tempLeftChild.rightChild = this;
-        tempLeftChild.parent = this.parent;
-        this.parent = tempLeftChild;
-        parent.rightheight++;
-        this.leftheight--;        
+    private AdtAVLTree rotateRight() {
+        // Rechter Baum wird neue Wurzel
+        AdtAVLTree tempTree = this.leftChild;
+        // was im alten Baum kleiner war als die Wurzel des rechten Teilbaums ist größer sein als die alte Wurzel
+        this.leftChild = tempTree.rightChild;
+        // Alte Wurzel wird zum linken Teilbaum
+        tempTree.rightChild = this;
+        tempTree.parent = this.parent;
+        tempTree.rightChild.parent = tempTree;
+        tempTree.rightheight++;// = this.leftheight++;
+        tempTree.rightChild.leftheight--; //= this.leftheight--;
+        tempTree.rightChild.leftheight--; //= this.leftheight--;
+        if (tempTree.parent != null && tempTree.parent.value > tempTree.value) {
+            tempTree.parent.rightChild = tempTree;
+            tempTree.parent.leftheight--;
+        } else if (tempTree.parent != null && tempTree.parent.value < tempTree.value) {
+            tempTree.parent.leftChild = tempTree;
+            tempTree.parent.leftheight--;
+        }
+        return tempTree;
     }
 
-    private void rotateLeft() {
-        AdtAVLTree tempRightChild = this.rightChild;
-        this.rightChild = this.rightChild.leftChild;
-        tempRightChild.leftChild = this;
-        tempRightChild.parent = parent;
-        this.parent = tempRightChild;
-        parent.leftheight++;
-        this.rightheight--;
+    private AdtAVLTree rotateLeft() {
+        // Rechter Baum wird neue Wurzel
+        AdtAVLTree tempTree = this.rightChild;
+        // was im alten Baum kleiner war als die Wurzel des rechten Teilbaums ist größer sein als die alte Wurzel
+        this.rightChild = tempTree.leftChild;
+        // Alte Wurzel wird zum linken Teilbaum
+        tempTree.leftChild = this;
+        tempTree.parent = this.parent;
+        tempTree.leftChild.parent = tempTree;
+        tempTree.leftheight++;// = this.leftheight++;
+        tempTree.leftChild.rightheight--; //= this.rightheight--;
+        tempTree.leftChild.rightheight--; //= this.rightheight--;
+        if (tempTree.parent != null && tempTree.parent.value > tempTree.value) {
+            tempTree.parent.leftChild = tempTree;
+            tempTree.parent.leftheight--;
+        } else if (tempTree.parent != null && tempTree.parent.value < tempTree.value) {
+            tempTree.parent.rightChild = tempTree;
+            tempTree.parent.rightheight--;
+        }
+        return tempTree;
     }
 }

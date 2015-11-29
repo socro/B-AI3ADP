@@ -51,11 +51,11 @@ public class AdtAVLTreeTests {
 //        while(root.parent != null){
 //            root = root.parent;
 //        }
-        testtree = testtree.insert(8);
+        testtree = testtree.insert(12);
         testtree = testtree.insert(9);
         testtree = testtree.insert(10);
-//        testtree = testtree.insert(11);
-//        testtree = testtree.insert(12);
+        testtree = testtree.insert(8);
+        testtree = testtree.insert(11);
         testtree.print("graph");
     }
 }
