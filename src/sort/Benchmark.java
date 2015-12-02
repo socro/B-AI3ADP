@@ -1,6 +1,7 @@
 package sort;
 
 import implementations.AdtAVLTree;
+import implementations.AdtAVLTreeIO;
 import interfaces.AdtArray;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -23,27 +24,55 @@ public class Benchmark {
         System.out.println("Beginn des Benchmark");
         AdtArray testzahlen;
         AdtAVLTree testtree = AdtAVLTree.create();
+        AdtAVLTreeIO testtreeIO = AdtAVLTreeIO.create();
+        long[] timebefore = new long[1]; 
+        long[] timeafter = new long[1]; 
+        long[] steps;
         
         
         // Test mit Klaucks Zahlen
-        Generator.importNums("zahlen.dat");
-        for (int i = 0; i < testzahlen.length(); i++) {
-            testtree.insert(testzahlen.get(i));      
-        }
-        testtree.print("graph_klauck");
+//        Generator.importNums("zahlen.dat");
+//        for (int i = 0; i < testzahlen.length(); i++) {
+//            testtree.insert(testzahlen.get(i));      
+//        }
+//        testtree.print("graph_klauck");
 
         // Test mit 20 Zahlen
         Generator.sortnum(20, false);
         testzahlen = Generator.importNums("zahlen.dat");
+        for (int i = 0; i < testzahlen.length(); i++) {
+            testtree.insert(testzahlen.get(i));
+        }
+        testtree.print("20er_rand_nodup");
         
+        // Runtime Test mit 20 Zahlen
+        Generator.sortnum(1000, false);
+        testzahlen = Generator.importNums("zahlen.dat");
+        timebefore[0] = System.currentTimeMillis();
+        for (int i = 0; i < testzahlen.length(); i++) {
+            testtree.insert(testzahlen.get(i));
+        }
+        timeafter[0] = System.currentTimeMillis() - timebefore[0];
+
+
+        // IO Test mit 20 Zahlen
+        Generator.sortnum(1000, false);
+        testzahlen = Generator.importNums("zahlen.dat");
+        for (int i = 0; i < testzahlen.length(); i++) {
+            testtreeIO.insert(testzahlen.get(i));
+        }
+        steps = AdtAVLTreeIO.getStepsA();
+        
+        // Ausgabe Test mit 20 Zahlen 
+        outputToCSV("20er,20",steps,timeafter);
         
         // Test mit 50 Zahlen
-        Generator.sortnum(20, false);
-        testzahlen = Generator.importNums("zahlen.dat");
+//        Generator.sortnum(20, false);
+//        testzahlen = Generator.importNums("zahlen.dat");
         
         // Test mit 100 Zahlen
-        Generator.sortnum(20, false);
-        testzahlen = Generator.importNums("zahlen.dat");      
+//        Generator.sortnum(20, false);
+//        testzahlen = Generator.importNums("zahlen.dat");      
         
         
         
@@ -146,7 +175,8 @@ public class Benchmark {
         if (firstrun) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(filename, true), "utf-8"))) {
-                writer.write("Testname,Testarten,RNDSortierung,PivotPos,#Nr,Insertionthreshold,AlgRQ,AlgWQ,AdtRQ,AdtWQ,AlgRI,AlgWI,AdtRI,AdtWI,RtQ,RtI");
+                //writer.write("Testname,Testarten,RNDSortierung,PivotPos,#Nr,Insertionthreshold,AlgRQ,AlgWQ,AdtRQ,AdtWQ,AlgRI,AlgWI,AdtRI,AdtWI,RtQ,RtI");
+                writer.write("Testname,Testarten,RNDSortierung,#Nr,AlgR,AlgW,AdtR,AdtW");
                 writer.write(nl);
 
             } catch (IOException e) {

@@ -73,7 +73,7 @@ public class Generator {
             }
         } else {
             ArrayList<Integer> templist = new ArrayList<>();
-            for (int i = 0; i < amount; i++) {
+            for (int i = 1; i < amount+1; i++) {
                 templist.add(i);
             }
             Collections.shuffle(templist);
