@@ -1,5 +1,7 @@
 package sort;
 
+import implementations.AdtAVLTree;
+import implementations.AdtContainerFactory;
 import interfaces.AdtArray;
 
 public class Sorter {
@@ -27,7 +29,7 @@ public class Sorter {
 
     private Sorter() {
     }
-
+    
     public static void insertionsort(AdtArray array, int begin, int end) {
         if (begin < 1) {
             begin = 1;

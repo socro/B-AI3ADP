@@ -12,10 +12,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import implementations.AdtAVLTree;
 
-/**
- *
- * @author Rene
- */
 public class AdtAVLTreeTests {
 
     AdtAVLTree testtree;
@@ -40,22 +36,23 @@ public class AdtAVLTreeTests {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+
     @Test
     public void setUpTrees() throws InterruptedException {
-//        AdtAVLTree root = this;
-//        while(root.parent != null){
-//            root = root.parent;
-//        }
-        testtree = testtree.insert(12);
-        testtree = testtree.insert(9);
-        testtree = testtree.insert(10);
-        testtree = testtree.insert(8);
-        testtree = testtree.insert(11);
+
+
+        testtree.insert(3);
+        testtree.insert(2);
+        testtree.insert(1);
+        testtree.insert(4);
+        testtree.insert(5);
+        testtree.insert(6);
+        testtree.insert(7);
+        testtree.insert(16);
+        testtree.insert(15);
+        testtree.insert(14);
+
         testtree.print("graph");
+        
     }
 }

@@ -3,21 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtStackImpl.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtArrayTest.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtListTest.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtQueueTest.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtListImpl.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtArrayImpl.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/test/AdtStackTest.java</file>
-            <file>file:/C:/Users/Rene/Documents/NetBeansProjects/B-AI3ADP/src/implementations/AdtQueueImpl.java</file>
+            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/Sorter.java</file>
+            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/Generator.java</file>
+            <file>file:/home/kk/NetBeansProjects/B-ADP/src/implementations/AdtAVLTree.java</file>
+            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/tests/SortTest.java</file>
+            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/Benchmark.java</file>
         </group>
-    </open-files>
-</project-private>
-<?xml version="1.0" encoding="UTF-8"?>
-<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
     </open-files>
 </project-private>

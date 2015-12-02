@@ -19,15 +19,37 @@ public class Benchmark {
     private static int howmanynumbersdoyouwant = 3000;
 
     public static void main(String args[]) throws InterruptedException {
+        // Initialisierung fuer die Tests
         System.out.println("Beginn des Benchmark");
-        //Generator.sortnum(howmanynumbersdoyouwant, !allowduplicates);
-        AdtArray temparray = Generator.importNums("zahlen.dat");
+        AdtArray testzahlen;
         AdtAVLTree testtree = AdtAVLTree.create();
-//        AdtAVLTree root = testtree;
-        for (int i = 0; i < temparray.length(); i++) {
-            testtree.insert(temparray.get(i));      
+        
+        
+        // Test mit Klaucks Zahlen
+        Generator.importNums("zahlen.dat");
+        for (int i = 0; i < testzahlen.length(); i++) {
+            testtree.insert(testzahlen.get(i));      
         }
-        testtree.print("graph");
+        testtree.print("graph_klauck");
+
+        // Test mit 20 Zahlen
+        Generator.sortnum(20, false);
+        testzahlen = Generator.importNums("zahlen.dat");
+        
+        
+        // Test mit 50 Zahlen
+        Generator.sortnum(20, false);
+        testzahlen = Generator.importNums("zahlen.dat");
+        
+        // Test mit 100 Zahlen
+        Generator.sortnum(20, false);
+        testzahlen = Generator.importNums("zahlen.dat");      
+        
+        
+        
+        
+        
+       
 
 //        AdtArray klauckarray = Generator.importNums("klauck.dat");
 //        System.out.println("read finished");

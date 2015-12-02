@@ -1,2 +1,0 @@
-Testname,Testarten,RNDSortierung,PivotPos,#Nr,Insertionthreshold,AlgRQ,AlgWQ,AdtRQ,AdtWQ,AlgRI,AlgWI,AdtRI,AdtWI,RtQ,RtI
-Quicksort,Time + IO,klauck,pivotmedian,3000,12,0,124418,108773233,49086,0,20000,445,234,764,0
