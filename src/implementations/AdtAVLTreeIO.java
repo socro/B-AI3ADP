@@ -15,7 +15,7 @@ public class AdtAVLTreeIO {
     private static final int AlgW = 1;
     private static final int AdtR = 2;
     private static final int AdtW = 3;
-    private static long stepsA[] = new long[4];
+    public static long stepsA[] = new long[4];
 
 
     
@@ -417,10 +417,10 @@ public void print(String filename) throws InterruptedException {
             new FileOutputStream(filename + ".dot", true), "utf-8"))) {
         // Nur die Wurzel schreibt header und footer
             writer.write("}" + nl);
-            Process p = Runtime.getRuntime().exec("bash");
-            PrintWriter stdin = new PrintWriter(p.getOutputStream());
-            stdin.println("dot -Tsvg " + filename + ".dot > " + filename + ".svg");
-            stdin.close();
+//            Process p = Runtime.getRuntime().exec("bash");
+//            PrintWriter stdin = new PrintWriter(p.getOutputStream());
+//            stdin.println("dot -Tsvg " + filename + ".dot > " + filename + ".svg");
+//            stdin.close();
     } catch (IOException e) {
 
     }

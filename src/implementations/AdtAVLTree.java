@@ -1,6 +1,7 @@
 package implementations;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -24,69 +25,66 @@ public static AdtAVLTree create() {
  }
  
  // Fuegt ein AdtAVLNode in den Baum ein
- public void insertAVL(AdtAVLNode actNode, AdtAVLNode newNode) {
+ public void insertAVL(AdtAVLNode curNode, AdtAVLNode newNode) {
   // Wenn actNode null ist, befinden wir uns an der Wurzel des gesamten Baumes
-  if(actNode == null) {
+  if(curNode == null) {
     this.root = newNode;
   } else {
    
    // Wenn die zu neue Node kleiner als die aktuelle Node ist, dann in den linken Teil
-   if(newNode.value < actNode.value) {
+   if(newNode.value < curNode.value) {
     // Falls ich am Blatt bin, einfügen und Balance herstellen
-    if(actNode.leftchild == null) {
-     actNode.leftchild = newNode;
-     newNode.parent = actNode;
-     recursiveBalance(actNode);
+    if(curNode.leftchild == null) {
+     curNode.leftchild = newNode;
+     newNode.parent = curNode;
     // wir sind noch nicht am Blatt, also im linken Teil weitergehen
     } else {
-     insertAVL(actNode.leftchild,newNode);
+     insertAVL(curNode.leftchild,newNode);
     }
    
    // Wenn die zu neue Node größer als die aktuelle Node ist, dann in den rechten Teil
-   } else if(newNode.value > actNode.value) {
+   } else if(newNode.value > curNode.value) {
     // falls am Blatt, einfügen und Balance herstellen
-    if(actNode.rightchild == null) {
-     actNode.rightchild = newNode;
-     newNode.parent = actNode;
-     recursiveBalance(actNode);
+    if(curNode.rightchild == null) {
+     curNode.rightchild = newNode;
+     newNode.parent = curNode;
+     
     // wir sind noch nicht am Blatt, also im rechten Teil weitergehen
     } else {
-     insertAVL(actNode.rightchild,newNode);
+     insertAVL(curNode.rightchild,newNode);
     }
    // Ein Node diesen Werts existiert bereits. Tue nichts
    } else {
    }
+   recursiveBalance(curNode);
   }
  }
  
  // Prüft für jeden Node bis zur Root die Balance zwischen den Höhen und rotiert falls nötig
- public void recursiveBalance(AdtAVLNode actNode) {
+ public void recursiveBalance(AdtAVLNode curNode) {
  
-  // we do not use the balance in this class, but the store it anyway
-  setHeights(actNode);
-  int balance = actNode.rightheight - actNode.leftheight;
+  setHeights(curNode);
+  int balance = curNode.rightheight - curNode.leftheight;
  
-  // check the balance
+  // Wenn Teilbaum linkslastig oder rechtslastig
   if(balance==-2) {
    
-   if(actNode.leftchild.leftheight >= actNode.leftchild.rightheight) {
-    actNode = rotateRight(actNode);
+   if(curNode.leftchild.leftheight >= curNode.leftchild.rightheight) {
+    curNode = rotateRight(curNode);
    } else {
-    actNode = doubleRotateLeftRight(actNode);
+    curNode = doubleRotateLeftRight(curNode);
    }
   } else if(balance == 2) {
-   if(actNode.rightchild.rightheight >= actNode.rightchild.leftheight) {
-    actNode = rotateLeft(actNode);
+   if(curNode.rightchild.rightheight >= curNode.rightchild.leftheight) {
+    curNode = rotateLeft(curNode);
    } else {
-    actNode = doubleRotateRightLeft(actNode);
+    curNode = doubleRotateRightLeft(curNode);
    }
   }
  
-  // we did not reach the root yet
-  if(actNode.parent != null) {
-   recursiveBalance(actNode.parent);
-  } else {
-   this.root = actNode;
+  // Bis zur Wurzel gehen, diese ggf. anpassen und dvom Baum die Wurzel auf die aktuelle Node setzen
+  if(curNode.parent == null) {
+   this.root = curNode;
   }
  }
 
@@ -96,20 +94,21 @@ public static AdtAVLTree create() {
  }
  
  // Sucht nach einem Node im Baum der den zu löschenden Wert hat. Wenn gefunden lösche ihn.
- public void removeAVL(AdtAVLNode actNode,int delMeInt) {
+ public void removeAVL(AdtAVLNode curNode,int delMeInt) {
   // Beginne mit der Suche nach dem Node mit dem value von delMeInt
-  if(actNode == null) {
+  if(curNode == null) {
    // der Wert existiert nicht in diesem Baum, daher ist nichts zu tun
   } else {
-   if(actNode.value > delMeInt)  {
-    removeAVL(actNode.leftchild,delMeInt);
-   } else if(actNode.value < delMeInt) {
-    removeAVL(actNode.rightchild,delMeInt);
-   } else if(actNode.value == delMeInt) {
+   if(curNode.value > delMeInt)  {
+    removeAVL(curNode.leftchild,delMeInt);
+   } else if(curNode.value < delMeInt) {
+    removeAVL(curNode.rightchild,delMeInt);
+   } else if(curNode.value == delMeInt) {
     // zu löschende Node wurde gefunden -> Lösche diese Node aus dem Baum
-    removeFoundNode(actNode);
+    removeFoundNode(curNode);
    }
   }
+     recursiveBalance(curNode);
  }
  
  // Löscht eine Node aus dem Baum
@@ -226,6 +225,7 @@ public static AdtAVLTree create() {
  
  // Sucht nach dem Nachfolger für einen gegebenen Node
  public AdtAVLNode successor(AdtAVLNode predecessorNode) {
+  //Wenn Kind vorhanden welches größer ist als der aktuelle Wert, suche den kleinsten von diesen
   if(predecessorNode.rightchild != null) {
    AdtAVLNode r = predecessorNode.rightchild;
    while(r.leftchild!=null) {
@@ -234,6 +234,7 @@ public static AdtAVLTree create() {
    return r;
   } else {
    AdtAVLNode successorNode = predecessorNode.parent;
+   // Wir sind nicht Wurzel und das rechte Kind vom Vorgänger
    while(successorNode!=null && predecessorNode==successorNode.rightchild) {
     predecessorNode = successorNode;
     successorNode = predecessorNode.parent;
@@ -286,10 +287,10 @@ public void print(String filename) throws InterruptedException {
             new FileOutputStream(filename + ".dot", true), "utf-8"))) {
         // Nur die Wurzel schreibt header und footer
             writer.write("}" + nl);
-            Process p = Runtime.getRuntime().exec("bash");
-            PrintWriter stdin = new PrintWriter(p.getOutputStream());
-            stdin.println("dot -Tsvg " + filename + ".dot > " + filename + ".svg");
-            stdin.close();
+//            String stringToExecute = "dot.exe -Tsvg " + filename + ".dot > " + filename + ".svg";
+//            String[] cmdCall= new String[] {"cmd.exe", "/c",stringToExecute};
+//            Runtime.getRuntime().exec(cmdCall);
+//            System.out.println("stringToExecute: " + stringToExecute);
     } catch (IOException e) {
 
     }

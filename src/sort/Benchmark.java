@@ -14,72 +14,42 @@ public class Benchmark {
 
     private static final Random rnd = new Random();
     private static boolean firstrun = true;
-    private static String nl = System.lineSeparator();
-    private static boolean allowduplicates = true;
-
-    private static int howmanynumbersdoyouwant = 3000;
+    private static final String nl = System.lineSeparator();
+    private static final int UNSORTED = 1;
+    private static final int LEFTSORTED = 2;
+    private static final int RIGHTSORTED = 3;
 
     public static void main(String args[]) throws InterruptedException {
         // Initialisierung fuer die Tests
         System.out.println("Beginn des Benchmark");
-        AdtArray testzahlen;
         AdtAVLTree testtree = AdtAVLTree.create();
         AdtAVLTreeIO testtreeIO = AdtAVLTreeIO.create();
-        long[] timebefore = new long[1]; 
-        long[] timeafter = new long[1]; 
-        long[] steps;
+        
+        doAVLRuntimeIOTests(testtreeIO, testtree, 20, UNSORTED, false);
+        doAVLRuntimeIOTests(testtreeIO, testtree, 20, UNSORTED, true);
+        doAVLRuntimeIOTests(testtreeIO, testtree, 20, LEFTSORTED, false);
+        doAVLRuntimeIOTests(testtreeIO, testtree, 20, LEFTSORTED, true);
+        doAVLRuntimeIOTests(testtreeIO, testtree, 20, RIGHTSORTED, false);
+        doAVLRuntimeIOTests(testtreeIO, testtree, 20, RIGHTSORTED, true);
         
         
+
+
         // Test mit Klaucks Zahlen
 //        Generator.importNums("zahlen.dat");
 //        for (int i = 0; i < testzahlen.length(); i++) {
 //            testtree.insert(testzahlen.get(i));      
 //        }
 //        testtree.print("graph_klauck");
-
         // Test mit 20 Zahlen
-        Generator.sortnum(20, false);
-        testzahlen = Generator.importNums("zahlen.dat");
-        for (int i = 0; i < testzahlen.length(); i++) {
-            testtree.insert(testzahlen.get(i));
-        }
-        testtree.print("20er_rand_nodup");
-        
         // Runtime Test mit 20 Zahlen
-        Generator.sortnum(1000, false);
-        testzahlen = Generator.importNums("zahlen.dat");
-        timebefore[0] = System.currentTimeMillis();
-        for (int i = 0; i < testzahlen.length(); i++) {
-            testtree.insert(testzahlen.get(i));
-        }
-        timeafter[0] = System.currentTimeMillis() - timebefore[0];
-
-
         // IO Test mit 20 Zahlen
-        Generator.sortnum(1000, false);
-        testzahlen = Generator.importNums("zahlen.dat");
-        for (int i = 0; i < testzahlen.length(); i++) {
-            testtreeIO.insert(testzahlen.get(i));
-        }
-        steps = AdtAVLTreeIO.getStepsA();
-        
-        // Ausgabe Test mit 20 Zahlen 
-        outputToCSV("20er,20",steps,timeafter);
-        
         // Test mit 50 Zahlen
 //        Generator.sortnum(20, false);
 //        testzahlen = Generator.importNums("zahlen.dat");
-        
         // Test mit 100 Zahlen
 //        Generator.sortnum(20, false);
 //        testzahlen = Generator.importNums("zahlen.dat");      
-        
-        
-        
-        
-        
-       
-
 //        AdtArray klauckarray = Generator.importNums("klauck.dat");
 //        System.out.println("read finished");
 //        final int medianindexquicksortArray = medianof3(0, klauckarray.length(), klauckarray);        
@@ -169,6 +139,32 @@ public class Benchmark {
 //        
         //----------------------------------------
         System.out.println("Ende vom Benchmark");
+    }
+
+    public static void doAVLTests(AdtAVLTree gimmeZehBaum, int howManyNumbers, boolean doYouWantDuplicates) throws InterruptedException {
+        Generator.sortnum(howManyNumbers, doYouWantDuplicates);
+        AdtArray testzahlen = Generator.importNums("zahlen.dat");
+        for (int i = 0; i < testzahlen.length(); i++) {
+            gimmeZehBaum.insert(testzahlen.get(i));
+        }
+        gimmeZehBaum.print("AVL" + howManyNumbers + doYouWantDuplicates);
+    }
+
+    public static void doAVLRuntimeIOTests(AdtAVLTreeIO gimmeZehIOBaum, AdtAVLTree gimmeZehRuntimeBaum, int howManyNumbers,int sortOrder, boolean doYouWantDuplicates) throws InterruptedException {       long[] steps = new long[1];
+        long[] timebefore = new long[1];
+        long[] timeafter = new long[1];
+        Generator.sortnum(howManyNumbers, doYouWantDuplicates, sortOrder);
+        AdtArray testzahlen = Generator.importNums("zahlen.dat");
+        timebefore[0] = System.currentTimeMillis();
+        for (int i = 0; i < testzahlen.length(); i++) {
+            gimmeZehRuntimeBaum.insert(testzahlen.get(i));
+        }
+        timeafter[0] = System.currentTimeMillis() - timebefore[0];
+        for (int i = 0; i < testzahlen.length(); i++) {
+            gimmeZehIOBaum.insert(testzahlen.get(i));
+        }
+        gimmeZehRuntimeBaum.print("AVLRuntimeIO" + howManyNumbers + doYouWantDuplicates + sortOrder);
+        outputToCSV("AVLRuntimeIO" + howManyNumbers + doYouWantDuplicates + sortOrder, gimmeZehIOBaum.stepsA, timeafter);
     }
 
     public static void outputToCSV(String filename, long[] ioTest, long[] runtimeTest) {

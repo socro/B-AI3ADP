@@ -15,13 +15,28 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Generator {
 
-    private final static int MAXRND = 10000;
+    private final static int MAXRND = 2000;
     private final static int MINRND = 1;
 
     private final static String FILENAME = "zahlen.dat";
 
     private static AdtArray RNDNUMBERS = AdtContainerFactory.adtArray();
 
+    /**
+     * 
+     * @param amount
+     * @param allowduplicates
+     * @param caseSwitcher 1 = unsorted, 2 = left-sorted, 3 = right-sorted
+     */
+    public static void sortnum(int amount, boolean allowduplicates, int caseSwitcher){
+        switch(caseSwitcher){
+            case 1:sortnum(amount, allowduplicates);break;
+            case 2:sortnumLeft(amount, allowduplicates);break;
+            case 3:sortnumRight(amount, allowduplicates);break;
+            default:System.out.println("Please try again!");
+        }
+    }
+    
     public static void sortnum(int amount, boolean allowduplicates) {
         clearRNDNUMBERS();
         generateRNDNUMBERS(amount, allowduplicates);
@@ -72,11 +87,16 @@ public class Generator {
                 RNDNUMBERS.set(i, ThreadLocalRandom.current().nextInt(MINRND, MAXRND + 1));
             }
         } else {
+
             ArrayList<Integer> templist = new ArrayList<>();
-            for (int i = 1; i < amount+1; i++) {
+            int upperBound = MAXRND-MINRND > amount ? MAXRND : MINRND + amount;
+            for (int i = MINRND; i < upperBound; i++) {
                 templist.add(i);
             }
             Collections.shuffle(templist);
+            for(int i = templist.size(); i > amount; i--){
+                templist.remove(i-1);
+            }
             for(int i = 0; i < templist.size(); i++){
                 RNDNUMBERS.set(i, templist.get(i));
             }
