@@ -46,7 +46,7 @@ public class AdtHashmapImplTest {
         System.out.println("hash");
         String strategy = "";
         String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(AdtHashmapImpl.LINEAR, filename);
+        AdtHashmapImpl.hash(AdtHashmapImpl.DOUBLEHASH, filename);
         System.out.println(AdtHashmapImpl.find("amet,"));
     }
 
@@ -71,9 +71,6 @@ public class AdtHashmapImplTest {
         String word = "";
         int expResult = 0;
         int result = AdtHashmapImpl.find(word);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     } 
     
     /**
