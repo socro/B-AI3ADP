@@ -18,21 +18,60 @@ public class Benchmark {
     private static final int UNSORTED = 1;
     private static final int LEFTSORTED = 2;
     private static final int RIGHTSORTED = 3;
+    private static int howManyNumbers;
 
     public static void main(String args[]) throws InterruptedException {
         // Initialisierung fuer die Tests
         System.out.println("Beginn des Benchmark");
-        AdtAVLTree testtree = AdtAVLTree.create();
-        AdtAVLTreeIO testtreeIO = AdtAVLTreeIO.create();
-        
-        doAVLRuntimeIOTests(testtreeIO, testtree, 20, UNSORTED, false);
-        doAVLRuntimeIOTests(testtreeIO, testtree, 20, UNSORTED, true);
-        doAVLRuntimeIOTests(testtreeIO, testtree, 20, LEFTSORTED, false);
-        doAVLRuntimeIOTests(testtreeIO, testtree, 20, LEFTSORTED, true);
-        doAVLRuntimeIOTests(testtreeIO, testtree, 20, RIGHTSORTED, false);
-        doAVLRuntimeIOTests(testtreeIO, testtree, 20, RIGHTSORTED, true);
-        
-        
+        System.out.println("--------------------");
+        System.out.println("Insert-Tests");
+        doAVLRuntimeIOTests(1000000, UNSORTED, false);
+//        howManyNumbers = 20;
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, true);
+//        
+//        howManyNumbers = 200;
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, true);
+//        
+//        howManyNumbers = 2000;
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, true);
+//        
+//        howManyNumbers = 20000;
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, UNSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, LEFTSORTED, true);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, false);
+//        doAVLRuntimeIOTests(howManyNumbers, RIGHTSORTED, true);
+//        
+//        System.out.println("--------------------");
+//        System.out.println("Delete-Tests");
+//        
+//        AdtAVLTree deleteTree = new AdtAVLTree();
+//        Generator.sortnum(50, false, UNSORTED);
+//        AdtArray zahlenDat = Generator.importNums("zahlen.dat");
+//        for(int i = 0; i < zahlenDat.length(); i++){
+//            deleteTree.insert(zahlenDat.get(i));
+//        }
+//        for(int i = 0; i < zahlenDat.length();i++){
+//            deleteTree.remove(zahlenDat.get(i));
+//            deleteTree.print("deleteFromTree" + i);
+//        }
+//        System.out.println("--------------------");
 
 
         // Test mit Klaucks Zahlen
@@ -141,36 +180,39 @@ public class Benchmark {
         System.out.println("Ende vom Benchmark");
     }
 
-    public static void doAVLTests(AdtAVLTree gimmeZehBaum, int howManyNumbers, boolean doYouWantDuplicates) throws InterruptedException {
+    public static void doAVLTests(int howManyNumbers, boolean doYouWantDuplicates) throws InterruptedException {
+        AdtAVLTree testtree = AdtAVLTree.create();
         Generator.sortnum(howManyNumbers, doYouWantDuplicates);
         AdtArray testzahlen = Generator.importNums("zahlen.dat");
         for (int i = 0; i < testzahlen.length(); i++) {
-            gimmeZehBaum.insert(testzahlen.get(i));
+            testtree.insert(testzahlen.get(i));
         }
-        gimmeZehBaum.print("AVL" + howManyNumbers + doYouWantDuplicates);
+        testtree.print("AVL" + howManyNumbers + doYouWantDuplicates);
     }
 
-    public static void doAVLRuntimeIOTests(AdtAVLTreeIO gimmeZehIOBaum, AdtAVLTree gimmeZehRuntimeBaum, int howManyNumbers,int sortOrder, boolean doYouWantDuplicates) throws InterruptedException {       long[] steps = new long[1];
+    public static void doAVLRuntimeIOTests(int howManyNumbers,int sortOrder, boolean doYouWantDuplicates) throws InterruptedException {       
+        AdtAVLTree testtree = AdtAVLTree.create();
+        AdtAVLTreeIO testtreeIO = AdtAVLTreeIO.create();
         long[] timebefore = new long[1];
         long[] timeafter = new long[1];
         Generator.sortnum(howManyNumbers, doYouWantDuplicates, sortOrder);
         AdtArray testzahlen = Generator.importNums("zahlen.dat");
         timebefore[0] = System.currentTimeMillis();
         for (int i = 0; i < testzahlen.length(); i++) {
-            gimmeZehRuntimeBaum.insert(testzahlen.get(i));
+            testtree.insert(testzahlen.get(i));
         }
         timeafter[0] = System.currentTimeMillis() - timebefore[0];
         for (int i = 0; i < testzahlen.length(); i++) {
-            gimmeZehIOBaum.insert(testzahlen.get(i));
+            testtreeIO.insert(testzahlen.get(i));
         }
-        gimmeZehRuntimeBaum.print("AVLRuntimeIO" + howManyNumbers + doYouWantDuplicates + sortOrder);
-        outputToCSV("AVLRuntimeIO" + howManyNumbers + doYouWantDuplicates + sortOrder, gimmeZehIOBaum.stepsA, timeafter);
+        testtree.print("AVLRuntimeIO" + howManyNumbers + doYouWantDuplicates + sortOrder);
+        outputToCSV("AVLRuntimeIO," + howManyNumbers + "," + doYouWantDuplicates + "," + sortOrder, testtreeIO.stepsA, timeafter);
     }
 
     public static void outputToCSV(String filename, long[] ioTest, long[] runtimeTest) {
         if (firstrun) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(filename, true), "utf-8"))) {
+                    new FileOutputStream(filename+".csv", true), "utf-8"))) {
                 //writer.write("Testname,Testarten,RNDSortierung,PivotPos,#Nr,Insertionthreshold,AlgRQ,AlgWQ,AdtRQ,AdtWQ,AlgRI,AlgWI,AdtRI,AdtWI,RtQ,RtI");
                 writer.write("Testname,Testarten,RNDSortierung,#Nr,AlgR,AlgW,AdtR,AdtW");
                 writer.write(nl);
@@ -186,7 +228,7 @@ public class Benchmark {
         System.arraycopy(runtimeTest, 0, args, ioTest.length, runtimeTest.length);
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(filename, true), "utf-8"))) {
+                new FileOutputStream(filename+".csv", true), "utf-8"))) {
             writer.write(filename + ",");
             // print line
             for (int i = 0; i < args.length; i++) {

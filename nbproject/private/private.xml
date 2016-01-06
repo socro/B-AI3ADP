@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/Sorter.java</file>
-            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/Generator.java</file>
-            <file>file:/home/kk/NetBeansProjects/B-ADP/src/implementations/AdtAVLTree.java</file>
-            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/tests/SortTest.java</file>
-            <file>file:/home/kk/NetBeansProjects/B-ADP/src/sort/Benchmark.java</file>
+            <file>file:/E:/Dropbox/Kram/Studium/Netbeans/B-AI3ADP/src/implementations/AdtAVLNode.java</file>
+            <file>file:/E:/Dropbox/Kram/Studium/Netbeans/B-AI3ADP/src/sort/Benchmark.java</file>
+            <file>file:/E:/Dropbox/Kram/Studium/Netbeans/B-AI3ADP/src/implementations/AdtAVLTree.java</file>
+            <file>file:/E:/Dropbox/Kram/Studium/Netbeans/B-AI3ADP/src/sort/Generator.java</file>
         </group>
     </open-files>
 </project-private>
