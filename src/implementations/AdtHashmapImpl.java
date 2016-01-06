@@ -153,8 +153,7 @@ public class AdtHashmapImpl{
         return returnValue;
     }    
    
-    public static long calcPrime(long minimum) { 
-        int MAX_DIFFERENCE = 5;
+    public static long calcPrime(long minimum) {
         boolean foundPrime = false;
         while(!foundPrime) {
           if(isPrime(minimum)) {
@@ -205,8 +204,7 @@ public class AdtHashmapImpl{
                 return doDoubleHashing(s,previouslyCalculatedIndex);
             }
             default:{
-                System.out.println("Wenn das hier in der Koncole steht, lauf!");
-                throw new Exception("Explosiooooonen - BOOOOOOOOOOOOOM!");
+                throw new Exception("Missing Hashing-Strategy");
             }
         }                
     }
