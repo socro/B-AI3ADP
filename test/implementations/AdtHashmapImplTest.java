@@ -44,9 +44,9 @@ public class AdtHashmapImplTest {
     @Test
     public void testHash() throws Exception {
         System.out.println("hash");
-        String strategy = "";
+        String strategy = AdtHashmapImpl.DOUBLEHASH;
         String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(AdtHashmapImpl.DOUBLEHASH, filename);
+        AdtHashmapImpl.hash(strategy, filename);
         System.out.println(AdtHashmapImpl.find("amet,"));
     }
 
@@ -56,9 +56,13 @@ public class AdtHashmapImplTest {
     @Test
     public void testInsert() throws Exception {
         System.out.println("insert");
-        AdtHashmapImpl hashmap = null;
-        String word = "";
+        String strategy = AdtHashmapImpl.DOUBLEHASH;
+        String filename = "src/io/textb.txt";
+        AdtHashmapImpl.hash(strategy, filename);
+        System.out.println(AdtHashmapImpl.find("magna"));
+        String word = "magna";
         AdtHashmapImpl.insert(word);
+        System.out.println(AdtHashmapImpl.find("magna"));
     }
 
     /**
