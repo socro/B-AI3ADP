@@ -42,55 +42,50 @@ public class AdtHashmapImplTest {
      * Test of hash method, of class AdtHashmapImpl.
      */
     @Test
-    public void testHash() {
+    public void testHash() throws Exception {
         System.out.println("hash");
         String strategy = "";
-        String filename = "";
-        AdtHashmapImpl.hash(strategy, filename);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String filename = "src/io/textb.txt";
+        AdtHashmapImpl.hash(AdtHashmapImpl.LINEAR, filename);
+        System.out.println(AdtHashmapImpl.find("amet,"));
     }
 
     /**
      * Test of insert method, of class AdtHashmapImpl.
      */
     @Test
-    public void testInsert() {
+    public void testInsert() throws Exception {
         System.out.println("insert");
         AdtHashmapImpl hashmap = null;
         String word = "";
-        AdtHashmapImpl.insert(hashmap, word);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        AdtHashmapImpl.insert(word);
     }
 
     /**
      * Test of find method, of class AdtHashmapImpl.
      */
     @Test
-    public void testFind() {
+    public void testFind() throws Exception {
         System.out.println("find");
         AdtHashmapImpl hashmap = null;
         String word = "";
         int expResult = 0;
-        int result = AdtHashmapImpl.find(hashmap, word);
+        int result = AdtHashmapImpl.find(word);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-
+    } 
+    
     /**
-     * Test of importFile method, of class AdtHashmapImpl.
+     * Test of find method, of class AdtHashmapImpl.
      */
     @Test
-    public void testImportFile() {
-        System.out.println("importFile");
-        String filename = "";
-        ArrayList<String> expResult = null;
-        ArrayList<String> result = AdtHashmapImpl.importFile(filename);
+    public void testCalcPrime(){
+        System.out.println("optimus prime");
+        String word = "";
+        long expResult = 701;
+        long result = AdtHashmapImpl.calcPrime(692);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    } 
     
 }
