@@ -25,6 +25,7 @@ public class AdtHashmapImpl {
     private static int wiselyChoosenPrime = 0;
 
     private static ArrayList<String> importedWords;
+    private static boolean externalPrimeGiven = true;
 
     public static void hash(String strategy, String filename, int hashmapSize) throws Exception {
         importedWords = importFile(filename);
@@ -58,18 +59,33 @@ public class AdtHashmapImpl {
         return System.currentTimeMillis()-runtime;
     }
     
+    public static long hashRT(String strategy, String filename, int size, int prime) throws Exception {
+        externalPrimeGiven = true;
+        wiselyChoosenPrime = prime;
+        if(importedWords == null){
+            importedWords = importFile(filename);
+        }
+        long runtime = System.currentTimeMillis();
+        hash(strategy, filename, size);
+        return System.currentTimeMillis()-runtime;
+    }
+    
     public static long hashRT(String strategy, String filename) throws Exception {
         importedWords = importFile(filename);
         return hashRT(strategy, filename, calculateHashmapSize(importedWords));
     }
 
     public static void create(int size, String strategy) {
+        
         collisions = 0;
         AdtHashmapImpl.strategy = strategy;
         words = new String[size];
         count = new int[size];
         brentted = new int[size];
-        wiselyChoosenPrime = size;
+        if(!externalPrimeGiven){
+            wiselyChoosenPrime = size;            
+        }
+        externalPrimeGiven = false;
         
         for (int i = 0; i < count.length; i++) {
             count[i] = 0;

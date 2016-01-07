@@ -66,7 +66,7 @@ public class AdtHashmapImplTest {
         headerCSV.add("Hashmap Size");        
         headerCSV.add("Collisions");
         
-//        outputToCSV("src/io/header.csv", headerCSV);
+//      outputToCSV("src/io/header.csv", headerCSV);
         
         for (String text : texts) {
             for (String probingMethod : probingMethods) {
@@ -79,10 +79,10 @@ public class AdtHashmapImplTest {
                 
                 if(text.equals(texts[0])){
                     // Text A
-                    hashRT = AdtHashmapImpl.hashRT(probingMethod, text,176);
+                    hashRT = AdtHashmapImpl.hashRT(probingMethod, text);
                 } else {
                     // Text B
-                    hashRT = AdtHashmapImpl.hashRT(probingMethod, text,8920);                    
+                    hashRT = AdtHashmapImpl.hashRT(probingMethod, text);                    
                 }
                 
                 resultToExport.add(hashRT + "");
@@ -118,81 +118,4 @@ public class AdtHashmapImplTest {
         } catch (IOException e) {
         }
     }
-    //##########################################################################
-    //##########################################################################
-    //##########################################################################
-    //##########################################################################
-    // Runtime Tests with every probing-method
-    /**
-     * Test of hash method, of class AdtHashmapImpl.
-     */
-    @Test
-    public void testHashRTTextADOUBLEHASH() throws Exception {
-        System.out.println("testHashRTTextADOUBLEHASH");
-        String strategy = DOUBLEHASH;
-        String filename = "src/io/texta.txt";
-        AdtHashmapImpl.hash(strategy,filename);
-        System.out.println("Collisions: " + AdtHashmapImpl.getCollisions());
-    }
-    /**
-     * Test of hash method, of class AdtHashmapImpl.
-     */
-    @Test
-    public void testHashRTTextBDOUBLEHASH() throws Exception {
-        System.out.println("testHashRTTextBDOUBLEHASH");
-        String strategy = DOUBLEHASH;
-        String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(strategy,filename);
-        System.out.println("Collisions: " + AdtHashmapImpl.getCollisions());
-    }
-    /**
-     * Test of hash method, of class AdtHashmapImpl.
-     */
-    @Test
-    public void testHashRTTextALINEAR() throws Exception {
-        System.out.println("testHashRTTextALINEAR");
-        String strategy = LINEAR;
-        String filename = "src/io/texta.txt";
-        AdtHashmapImpl.hash(strategy,filename);
-        System.out.println("Collisions: " + AdtHashmapImpl.getCollisions());
-    }
-    /**
-     * Test of hash method, of class AdtHashmapImpl.
-     */
-    @Test
-    public void testHashRTTextBLINEAR() throws Exception {
-        System.out.println("testHashRTTextBLINEAR");
-        String strategy = LINEAR;
-        String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(strategy,filename);
-        System.out.println("Collisions: " + AdtHashmapImpl.getCollisions());
-    }
-    /**
-     * Test of hash method, of class AdtHashmapImpl.
-     */
-    @Test
-    public void testHashRTTextAQUADRATIC() throws Exception {
-        System.out.println("testHashRTTextAQUADRATIC");
-        String strategy = QUADRATIC;
-        String filename = "src/io/texta.txt";
-        AdtHashmapImpl.hash(strategy,filename);
-        System.out.println("Collisions: " + AdtHashmapImpl.getCollisions());
-    }
-    /**
-     * Test of hash method, of class AdtHashmapImpl.
-     */
-    @Test
-    public void testHashRTTextBQUADRATIC() throws Exception {
-        System.out.println("testHashRTTextBQUADRATIC");
-        String strategy = QUADRATIC;
-        String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(strategy,filename);
-        System.out.println("Collisions: " + AdtHashmapImpl.getCollisions());
-    }
-    //##########################################################################
-    //##########################################################################
-    //##########################################################################
-    //##########################################################################
-    
-    
 }
