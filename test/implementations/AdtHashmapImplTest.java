@@ -13,6 +13,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import static implementations.AdtHashmapImpl.*;
+
 /**
  *
  * @author Rene
@@ -37,56 +39,73 @@ public class AdtHashmapImplTest {
     @After
     public void tearDown() {
     }
-
+    //##########################################################################
+    //##########################################################################
+    //##########################################################################
+    //##########################################################################
+    // Runtime Tests with every probing-method
     /**
      * Test of hash method, of class AdtHashmapImpl.
      */
     @Test
-    public void testHash() throws Exception {
-        System.out.println("hash");
-        String strategy = AdtHashmapImpl.DOUBLEHASH;
-        String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(strategy, filename);
-        System.out.println(AdtHashmapImpl.find("amet,"));
+    public void testHashRTTextADOUBLEHASH() throws Exception {
+        System.out.println("testHashRTTextADOUBLEHASH");
+        String strategy = DOUBLEHASH;
+        String filename = "src/io/texta.txt";
+        AdtHashmapImpl.hash(strategy,filename);
     }
-
     /**
-     * Test of insert method, of class AdtHashmapImpl.
+     * Test of hash method, of class AdtHashmapImpl.
      */
     @Test
-    public void testInsert() throws Exception {
-        System.out.println("insert");
-        String strategy = AdtHashmapImpl.DOUBLEHASH;
+    public void testHashRTTextBDOUBLEHASH() throws Exception {
+        System.out.println("testHashRTTextBDOUBLEHASH");
+        String strategy = DOUBLEHASH;
         String filename = "src/io/textb.txt";
-        AdtHashmapImpl.hash(strategy, filename);
-        System.out.println(AdtHashmapImpl.find("magna"));
-        String word = "magna";
-        AdtHashmapImpl.insert(word);
-        System.out.println(AdtHashmapImpl.find("magna"));
+        AdtHashmapImpl.hash(strategy,filename);
     }
-
     /**
-     * Test of find method, of class AdtHashmapImpl.
+     * Test of hash method, of class AdtHashmapImpl.
      */
     @Test
-    public void testFind() throws Exception {
-        System.out.println("find");
-        AdtHashmapImpl hashmap = null;
-        String word = "";
-        int expResult = 0;
-        int result = AdtHashmapImpl.find(word);
-    } 
-    
+    public void testHashRTTextALINEAR() throws Exception {
+        System.out.println("testHashRTTextALINEAR");
+        String strategy = LINEAR;
+        String filename = "src/io/texta.txt";
+        AdtHashmapImpl.hash(strategy,filename);
+    }
     /**
-     * Test of find method, of class AdtHashmapImpl.
+     * Test of hash method, of class AdtHashmapImpl.
      */
     @Test
-    public void testCalcPrime(){
-        System.out.println("optimus prime");
-        String word = "";
-        long expResult = 701;
-        long result = AdtHashmapImpl.calcPrime(692);
-        assertEquals(expResult, result);
-    } 
-    
+    public void testHashRTTextBLINEAR() throws Exception {
+        System.out.println("testHashRTTextBLINEAR");
+        String strategy = LINEAR;
+        String filename = "src/io/textb.txt";
+        AdtHashmapImpl.hash(strategy,filename);
+    }
+    /**
+     * Test of hash method, of class AdtHashmapImpl.
+     */
+    @Test
+    public void testHashRTTextAQUADRATIC() throws Exception {
+        System.out.println("testHashRTTextAQUADRATIC");
+        String strategy = QUADRATIC;
+        String filename = "src/io/texta.txt";
+        AdtHashmapImpl.hash(strategy,filename);
+    }
+    /**
+     * Test of hash method, of class AdtHashmapImpl.
+     */
+    @Test
+    public void testHashRTTextBQUADRATIC() throws Exception {
+        System.out.println("testHashRTTextBQUADRATIC");
+        String strategy = QUADRATIC;
+        String filename = "src/io/textb.txt";
+        AdtHashmapImpl.hash(strategy,filename);
+    }
+    //##########################################################################
+    //##########################################################################
+    //##########################################################################
+    //##########################################################################
 }

@@ -15,15 +15,16 @@ public class AdtHashmapImpl {
     private static String strategy;
     private static String[] words;
     private static int[] count;
+    private static int[] brentted;
 
     private static int wiselyChoosenPrime = 0;
 
     private static ArrayList<String> importedWords;
 
-    public static void hash(String strategy, String filename) throws Exception {
+    public static void hash(String strategy, String filename, int hashmapSize) throws Exception {
         importedWords = importFile(filename);
 
-        create(calculateHashmapSize(importedWords), strategy);
+        create(hashmapSize, strategy);
 
         for (String stringToStore : importedWords) {
             int calculatedIndex = divisionRemainderMethod(stringToStore);
@@ -36,16 +37,31 @@ public class AdtHashmapImpl {
                 pleaseHashAgain(stringToStore, calculatedIndex);
             }
         }
-
-        System.out.println("");
+    }
+    
+    public static void hash(String strategy, String filename) throws Exception {
+        importedWords = importFile(filename);
+        hash(strategy, filename, calculateHashmapSize(importedWords));
+    }
+    
+    public static long hashRT(String strategy, String filename) throws Exception {
+        long runtime = System.currentTimeMillis();
+        hash(strategy, filename, calculateHashmapSize(importedWords));
+        return System.currentTimeMillis()-runtime;
     }
 
-    private static void create(int size, String strategy) {
+    public static void create(int size, String strategy) {
         AdtHashmapImpl.strategy = strategy;
         words = new String[size];
         count = new int[size];
+        brentted = new int[size];
+        wiselyChoosenPrime = size;
+        
         for (int i = 0; i < count.length; i++) {
             count[i] = 0;
+        }
+        for (int i = 0; i < brentted.length; i++) {
+            brentted[i] = 0;
         }
         for (int i = 0; i < words.length; i++) {
             words[i] = null;
@@ -88,10 +104,14 @@ public class AdtHashmapImpl {
         return index;
     }
 
-    private static int doDoubleHashProbing(String word, int previouslyCalculatedIndex) {
+    private static int doDoubleHashProbing(String word) {
         int index = 0;
-
-        index = 1 + (previouslyCalculatedIndex % wiselyChoosenPrime - 2);
+        
+        for (int i = 0; i < word.length(); i++) {
+            index = (index * 128 + (int) word.charAt(i)) % (wiselyChoosenPrime - 2);
+        }
+        
+        index++;
 
         System.out.println("Double Hashwert zu: " + word + " -> " + index);
 
@@ -125,46 +145,88 @@ public class AdtHashmapImpl {
 
     // TODO Double Hashing nach Brent
     private static void doBrentWithDoubleHash(String newString, int previouslyCalculatedIndex) {
-        String oldString = words[previouslyCalculatedIndex];
+        int indexNewString = previouslyCalculatedIndex;
+        int indexNewOldString = 0;
         
         boolean weNeedAPlaceForThisString = true;
-        boolean weNeedAPlaceForThatString = true;
 
         int timesMovedNewString = 0;
-        int timesMovedOldString = 0;
 
-        int indexNewString = doDoubleHashProbing(newString, previouslyCalculatedIndex);
-        int indexOldString = doDoubleHashProbing(oldString, previouslyCalculatedIndex);
-
+        boolean thisRuns = true;
+        
         while (weNeedAPlaceForThisString) {
-            if (words[indexNewString] == null || words[indexNewString].equals(newString)) {
+            int indexOldString = indexNewString;
+            indexNewString = Math.abs(indexNewString - timesMovedNewString * doDoubleHashProbing(newString)) % wiselyChoosenPrime;
+            indexNewOldString = Math.abs((indexOldString - brentted[indexNewOldString] * doDoubleHashProbing(words[indexOldString]))) % wiselyChoosenPrime;
+            
+            if(thisRuns){
+                System.out.println("Index neuer String wird gesucht");
+                thisRuns = false;
+            }
+            if((words[indexNewOldString] == null)&& 
+                brentted[indexOldString] <= timesMovedNewString){
+                
+                words[indexNewOldString] = words[indexOldString];
+                count[indexNewOldString] = count[indexOldString];
+                brentted[indexNewOldString] = brentted[indexOldString];                
+                
+                words[indexOldString] = newString;
+                count[indexOldString] = 1;
+                brentted[indexOldString] = timesMovedNewString;
                 weNeedAPlaceForThisString = false;
+            }else if(words[indexNewString] == null || words[indexNewString].equals(newString)){
+                if(words[indexNewString] == null) {
+                    words[indexNewString] = newString;
+                }
+                count[indexNewString]++;
+                weNeedAPlaceForThisString = false;
+            }
+            else{
                 timesMovedNewString++;
-                indexNewString = doDoubleHashProbing(newString, indexNewString);
             }
         }
-        while (weNeedAPlaceForThatString) {
-            if (words[indexOldString] == null || words[indexOldString].equals(oldString)) {
-                weNeedAPlaceForThatString = false;
-                timesMovedOldString++;
-                indexOldString = doDoubleHashProbing(oldString, indexOldString);
-            }
-        }
-        if (timesMovedNewString < timesMovedOldString) {
-            if(words[indexNewString] == null){
-                words[indexNewString] = newString;                
-            }
-            count[indexNewString]++;
-        }else if(timesMovedOldString < timesMovedNewString){
-            if(words[indexOldString] == null){
-                words[indexOldString] = words[previouslyCalculatedIndex];
-                count[indexOldString] = count[previouslyCalculatedIndex];
-            } else if(words[indexOldString].equals(oldString)){
-                count[indexOldString]++;
-            }
-            words[previouslyCalculatedIndex] = newString;
-            count[previouslyCalculatedIndex] = 1;            
-        }
+//            
+//            if (words[indexNewString] == null || words[indexNewString].equals(newString)) {
+//                timesMovedNewString++;
+//                if(timesMovedNewString < )
+//            }
+//            if(indexNewString == previouslyCalculatedIndex){
+//                weNeedAPlaceForThisString = false;
+//                System.out.println("Nichts gefunden für den neuen String");
+//            }
+//            
+//            
+//        }
+//        while (weNeedAPlaceForThatString) {
+//            if(thatRuns){
+//                System.out.println("Index alter String wird gesucht");
+//                thatRuns = false;
+//            }
+//            if (words[indexOldString] == null || words[indexOldString].equals(oldString)) {
+//                weNeedAPlaceForThatString = false;
+//                timesMovedOldString++;
+//            }
+//            if(indexOldString == previouslyCalculatedIndex){
+//                weNeedAPlaceForThatString = false;
+//                System.out.println("Nichts gefunden für den alten String");
+//            }
+//            indexOldString = doDoubleHashProbing(oldString, indexOldString);
+//        }
+//        if (timesMovedNewString < timesMovedOldString) {
+//            if(words[indexNewString] == null){
+//                words[indexNewString] = newString;                
+//            }
+//            count[indexNewString]++;
+//        }else if(timesMovedOldString < timesMovedNewString){
+//            if(words[indexOldString] == null){
+//                words[indexOldString] = words[previouslyCalculatedIndex];
+//                count[indexOldString] = count[previouslyCalculatedIndex];
+//            } else if(words[indexOldString].equals(oldString)){
+//                count[indexOldString]++;
+//            }
+//            words[previouslyCalculatedIndex] = newString;
+//            count[previouslyCalculatedIndex] = 1;            
+//        }
         
         
     }
@@ -233,7 +295,7 @@ public class AdtHashmapImpl {
     private static void pleaseHashAgain(String stringToStore, int previouslyCalculatedIndex) throws Exception {
         switch (strategy) {
             case (LINEAR): {
-                int newIndex = doLinearProbing(stringToStore, previouslyCalculatedIndex);
+                int newIndex = previouslyCalculatedIndex - doLinearProbing(stringToStore, previouslyCalculatedIndex);
                 if (words[newIndex] == null) {
                     words[newIndex] = stringToStore;
                 }
@@ -241,7 +303,7 @@ public class AdtHashmapImpl {
                 break;
             }
             case (QUADRATIC): {
-                int newIndex = doQuadraticProbing(stringToStore, previouslyCalculatedIndex);
+                int newIndex = previouslyCalculatedIndex - doQuadraticProbing(stringToStore, previouslyCalculatedIndex);
                 if (words[newIndex] == null) {
                     words[newIndex] = stringToStore;
                 }
